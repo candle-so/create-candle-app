@@ -1,0 +1,28 @@
+{
+  "name": "create-candle-app",
+  "version": "1.0.2",
+  "description": "Create a Next.js app with Candle setup",
+  "main": "dist/index.js",
+  "bin": {
+    "create-candle-app": "./dist/bin/create-candle-app.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node ./src/bin/create-candle-app.ts"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/react": "^18.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
