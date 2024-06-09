@@ -1,6 +1,6 @@
 {
   "name": "create-candle-app",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Create a Next.js Marketplace with Candle setup",
   "main": "dist/bin/create-candle-app.js",
   "bin": {
@@ -8,10 +8,12 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "deploy": "npx tsc ./src/bin/deploy.ts && node ./src/bin/deploy.js"
   },
   "dependencies": {
     "commander": "^9.0.0",
+    "fs": "^0.0.1-security",
     "fs-extra": "^10.0.0",
     "inquirer": "^8.0.0"
   },

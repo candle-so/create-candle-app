@@ -35,5 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/src/*.js
+/src/**/*.js
 /**/node_modules
