@@ -33,12 +33,12 @@ export default function PlantPage({ params }: { params: { id: string } }) {
           <div className="flex items-center pb-4 px-2">
             <Avatar className="w-6 h-6 ring-2 ring-rose-400 ring-offset-2 ring-offset-slate-800">
               <AvatarImage
-                src={product.seller.profileImage}
-                alt={product.seller.name}
+                src={product?.seller?.profileImage}
+                alt={product?.seller?.name}
               />
-              <AvatarFallback>{product.seller.name[0]}</AvatarFallback>
+              <AvatarFallback>{product?.seller?.name[0]}</AvatarFallback>
             </Avatar>
-            <p className="text-sm  ml-2">{product.seller.name}</p>
+            <p className="text-sm  ml-2">{product?.seller?.name}</p>
           </div>
           <div className="mb-4">
             <p className="text-lg text-gray-700 mb-2">

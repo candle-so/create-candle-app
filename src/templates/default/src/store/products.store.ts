@@ -37,7 +37,7 @@ type ProductsStore = {
   setProducts: (products: Product[]) => void;
 };
 
-const defaultProducts: Product[] = productsData;
+const defaultProducts: any = productsData;
 
 export const useProductsStore = create<ProductsStore>((set) => ({
   products: defaultProducts,

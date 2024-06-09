@@ -9,11 +9,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 10,
-    images: [
-      "https://source.unsplash.com/random/600x400?aloe-vera",
-      "https://source.unsplash.com/random/600x400?aloe-vera-1",
-      "https://source.unsplash.com/random/600x400?aloe-vera-2",
-    ],
+    images: ["aloe-vera", "aloe-vera-1", "aloe-vera-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description: "Aloe Vera is a succulent plant species of the genus Aloe.",
@@ -50,11 +48,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-2",
     },
     available: 5,
-    images: [
-      "https://source.unsplash.com/random/600x400?bonsai",
-      "https://source.unsplash.com/random/600x400?bonsai-1",
-      "https://source.unsplash.com/random/600x400?bonsai-2",
-    ],
+    images: ["bonsai", "bonsai-1", "bonsai-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 5-7 business days",
     description:
@@ -85,11 +81,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 8,
-    images: [
-      "https://source.unsplash.com/random/600x400?orchid",
-      "https://source.unsplash.com/random/600x400?orchid-1",
-      "https://source.unsplash.com/random/600x400?orchid-2",
-    ],
+    images: ["orchid", "orchid-1", "orchid-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -119,11 +113,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 15,
-    images: [
-      "https://source.unsplash.com/random/600x400?monstera",
-      "https://source.unsplash.com/random/600x400?monstera-1",
-      "https://source.unsplash.com/random/600x400?monstera-2",
-    ],
+    images: ["monstera", "monstera-1", "monstera-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -154,11 +146,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 7,
-    images: [
-      "https://source.unsplash.com/random/600x400?fiddle-leaf",
-      "https://source.unsplash.com/random/600x400?fiddle-leaf-1",
-      "https://source.unsplash.com/random/600x400?fiddle-leaf-2",
-    ],
+    images: ["fiddle-leaf", "fiddle-leaf-1", "fiddle-leaf-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 4-6 business days",
     description:
@@ -189,11 +179,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 12,
-    images: [
-      "https://source.unsplash.com/random/600x400?snake-plant",
-      "https://source.unsplash.com/random/600x400?snake-plant-1",
-      "https://source.unsplash.com/random/600x400?snake-plant-2",
-    ],
+    images: ["snake-plant", "snake-plant-1", "snake-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -224,10 +212,10 @@ export const productsData = [
     },
     available: 6,
     images: [
-      "https://source.unsplash.com/random/600x400?bird-of-paradise",
-      "https://source.unsplash.com/random/600x400?bird-of-paradise-1",
-      "https://source.unsplash.com/random/600x400?bird-of-paradise-2",
-    ],
+      "bird-of-paradise",
+      "bird-of-paradise-1",
+      "bird-of-paradise-2",
+    ].map((image) => `/images/plants/${image}.jpg`),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 5-7 business days",
     description:
@@ -257,11 +245,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 9,
-    images: [
-      "https://source.unsplash.com/random/600x400?anthurium",
-      "https://source.unsplash.com/random/600x400?anthurium-1",
-      "https://source.unsplash.com/random/600x400?anthurium-2",
-    ],
+    images: ["anthurium", "anthurium-1", "anthurium-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -291,11 +277,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 11,
-    images: [
-      "https://source.unsplash.com/random/600x400?philodendron",
-      "https://source.unsplash.com/random/600x400?philodendron-1",
-      "https://source.unsplash.com/random/600x400?philodendron-2",
-    ],
+    images: ["philodendron", "philodendron-1", "philodendron-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -325,11 +309,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 10,
-    images: [
-      "https://source.unsplash.com/random/600x400?zz-plant",
-      "https://source.unsplash.com/random/600x400?zz-plant-1",
-      "https://source.unsplash.com/random/600x400?zz-plant-2",
-    ],
+    images: ["zz-plant", "zz-plant-1", "zz-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -359,11 +341,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 14,
-    images: [
-      "https://source.unsplash.com/random/600x400?rubber-plant",
-      "https://source.unsplash.com/random/600x400?rubber-plant-1",
-      "https://source.unsplash.com/random/600x400?rubber-plant-2",
-    ],
+    images: ["rubber-plant", "rubber-plant-1", "rubber-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -394,11 +374,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 20,
-    images: [
-      "https://source.unsplash.com/random/600x400?pothos",
-      "https://source.unsplash.com/random/600x400?pothos-1",
-      "https://source.unsplash.com/random/600x400?pothos-2",
-    ],
+    images: ["pothos", "pothos-1", "pothos-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Pothos is a genus of flowering plants in the family Araceae.",
@@ -427,11 +405,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 13,
-    images: [
-      "https://source.unsplash.com/random/600x400?peace-lily",
-      "https://source.unsplash.com/random/600x400?peace-lily-1",
-      "https://source.unsplash.com/random/600x400?peace-lily-2",
-    ],
+    images: ["peace-lily", "peace-lily-1", "peace-lily-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -461,11 +437,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 22,
-    images: [
-      "https://source.unsplash.com/random/600x400?cactus",
-      "https://source.unsplash.com/random/600x400?cactus-1",
-      "https://source.unsplash.com/random/600x400?cactus-2",
-    ],
+    images: ["cactus", "cactus-1", "cactus-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Cactus is a member of the plant family Cactaceae.",
@@ -494,11 +468,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 7,
-    images: [
-      "https://source.unsplash.com/random/600x400?calathea",
-      "https://source.unsplash.com/random/600x400?calathea-1",
-      "https://source.unsplash.com/random/600x400?calathea-2",
-    ],
+    images: ["calathea", "calathea-1", "calathea-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -530,10 +502,10 @@ export const productsData = [
     },
     available: 16,
     images: [
-      "https://source.unsplash.com/random/600x400?chinese-evergreen",
-      "https://source.unsplash.com/random/600x400?chinese-evergreen-1",
-      "https://source.unsplash.com/random/600x400?chinese-evergreen-2",
-    ],
+      "chinese-evergreen",
+      "chinese-evergreen-1",
+      "chinese-evergreen-2",
+    ].map((image) => `/images/plants/${image}.jpg`),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -564,11 +536,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 9,
-    images: [
-      "https://source.unsplash.com/random/600x400?ficus",
-      "https://source.unsplash.com/random/600x400?ficus-1",
-      "https://source.unsplash.com/random/600x400?ficus-2",
-    ],
+    images: ["ficus", "ficus-1", "ficus-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -599,11 +569,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 18,
-    images: [
-      "https://source.unsplash.com/random/600x400?spider-plant",
-      "https://source.unsplash.com/random/600x400?spider-plant-1",
-      "https://source.unsplash.com/random/600x400?spider-plant-2",
-    ],
+    images: ["spider-plant", "spider-plant-1", "spider-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description: "Spider Plant is a species of perennial flowering plant.",
@@ -633,11 +601,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 14,
-    images: [
-      "https://source.unsplash.com/random/600x400?jade-plant",
-      "https://source.unsplash.com/random/600x400?jade-plant-1",
-      "https://source.unsplash.com/random/600x400?jade-plant-2",
-    ],
+    images: ["jade-plant", "jade-plant-1", "jade-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -668,11 +634,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 8,
-    images: [
-      "https://source.unsplash.com/random/600x400?birds-nest-fern",
-      "https://source.unsplash.com/random/600x400?birds-nest-fern-1",
-      "https://source.unsplash.com/random/600x400?birds-nest-fern-2",
-    ],
+    images: ["birds-nest-fern", "birds-nest-fern-1", "birds-nest-fern-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -703,11 +667,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 12,
-    images: [
-      "https://source.unsplash.com/random/600x400?parlor-palm",
-      "https://source.unsplash.com/random/600x400?parlor-palm-1",
-      "https://source.unsplash.com/random/600x400?parlor-palm-2",
-    ],
+    images: ["parlor-palm", "parlor-palm-1", "parlor-palm-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description: "Parlor Palm is a species of small palm tree.",
@@ -737,11 +699,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 5,
-    images: [
-      "https://source.unsplash.com/random/600x400?money-tree",
-      "https://source.unsplash.com/random/600x400?money-tree-1",
-      "https://source.unsplash.com/random/600x400?money-tree-2",
-    ],
+    images: ["money-tree", "money-tree-1", "money-tree-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description: "Money Tree is a species of tree native to tropical regions.",
@@ -771,11 +731,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 12,
-    images: [
-      "https://source.unsplash.com/random/600x400?hibiscus",
-      "https://source.unsplash.com/random/600x400?hibiscus-1",
-      "https://source.unsplash.com/random/600x400?hibiscus-2",
-    ],
+    images: ["hibiscus", "hibiscus-1", "hibiscus-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -805,11 +763,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-6",
     },
     available: 7,
-    images: [
-      "https://source.unsplash.com/random/600x400?papaya-plant",
-      "https://source.unsplash.com/random/600x400?papaya-plant-1",
-      "https://source.unsplash.com/random/600x400?papaya-plant-2",
-    ],
+    images: ["papaya-plant", "papaya-plant-1", "papaya-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description: "Papaya is the plant species in the genus Carica.",
@@ -838,11 +794,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-6",
     },
     available: 5,
-    images: [
-      "https://source.unsplash.com/random/600x400?mango-plant",
-      "https://source.unsplash.com/random/600x400?mango-plant-1",
-      "https://source.unsplash.com/random/600x400?mango-plant-2",
-    ],
+    images: ["mango-plant", "mango-plant-1", "mango-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -872,11 +826,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 11,
-    images: [
-      "https://source.unsplash.com/random/600x400?ginger-plant",
-      "https://source.unsplash.com/random/600x400?ginger-plant-1",
-      "https://source.unsplash.com/random/600x400?ginger-plant-2",
-    ],
+    images: ["ginger-plant", "ginger-plant-1", "ginger-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -906,11 +858,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 9,
-    images: [
-      "https://source.unsplash.com/random/600x400?dragon-tree",
-      "https://source.unsplash.com/random/600x400?dragon-tree-1",
-      "https://source.unsplash.com/random/600x400?dragon-tree-2",
-    ],
+    images: ["dragon-tree", "dragon-tree-1", "dragon-tree-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -941,11 +891,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-6",
     },
     available: 6,
-    images: [
-      "https://source.unsplash.com/random/600x400?banana-plant",
-      "https://source.unsplash.com/random/600x400?banana-plant-1",
-      "https://source.unsplash.com/random/600x400?banana-plant-2",
-    ],
+    images: ["banana-plant", "banana-plant-1", "banana-plant-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 3-5 business days",
     description:
@@ -975,11 +923,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 18,
-    images: [
-      "https://source.unsplash.com/random/600x400?lavender",
-      "https://source.unsplash.com/random/600x400?lavender-1",
-      "https://source.unsplash.com/random/600x400?lavender-2",
-    ],
+    images: ["lavender", "lavender-1", "lavender-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -1010,11 +956,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 16,
-    images: [
-      "https://source.unsplash.com/random/600x400?rosemary",
-      "https://source.unsplash.com/random/600x400?rosemary-1",
-      "https://source.unsplash.com/random/600x400?rosemary-2",
-    ],
+    images: ["rosemary", "rosemary-1", "rosemary-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 2-4 business days",
     description:
@@ -1045,11 +989,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 20,
-    images: [
-      "https://source.unsplash.com/random/600x400?thyme",
-      "https://source.unsplash.com/random/600x400?thyme-1",
-      "https://source.unsplash.com/random/600x400?thyme-2",
-    ],
+    images: ["thyme", "thyme-1", "thyme-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1080,11 +1022,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 25,
-    images: [
-      "https://source.unsplash.com/random/600x400?mint",
-      "https://source.unsplash.com/random/600x400?mint-1",
-      "https://source.unsplash.com/random/600x400?mint-2",
-    ],
+    images: ["mint", "mint-1", "mint-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Mint is a genus of plants in the family Lamiaceae.",
@@ -1114,11 +1054,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 20,
-    images: [
-      "https://source.unsplash.com/random/600x400?basil",
-      "https://source.unsplash.com/random/600x400?basil-1",
-      "https://source.unsplash.com/random/600x400?basil-2",
-    ],
+    images: ["basil", "basil-1", "basil-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Basil is a culinary herb of the family Lamiaceae.",
@@ -1148,11 +1086,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 18,
-    images: [
-      "https://source.unsplash.com/random/600x400?oregano",
-      "https://source.unsplash.com/random/600x400?oregano-1",
-      "https://source.unsplash.com/random/600x400?oregano-2",
-    ],
+    images: ["oregano", "oregano-1", "oregano-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1183,11 +1119,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-5",
     },
     available: 20,
-    images: [
-      "https://source.unsplash.com/random/600x400?sage",
-      "https://source.unsplash.com/random/600x400?sage-1",
-      "https://source.unsplash.com/random/600x400?sage-2",
-    ],
+    images: ["sage", "sage-1", "sage-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1218,11 +1152,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 22,
-    images: [
-      "https://source.unsplash.com/random/600x400?cilantro",
-      "https://source.unsplash.com/random/600x400?cilantro-1",
-      "https://source.unsplash.com/random/600x400?cilantro-2",
-    ],
+    images: ["cilantro", "cilantro-1", "cilantro-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1253,11 +1185,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 18,
-    images: [
-      "https://source.unsplash.com/random/600x400?parsley",
-      "https://source.unsplash.com/random/600x400?parsley-1",
-      "https://source.unsplash.com/random/600x400?parsley-2",
-    ],
+    images: ["parsley", "parsley-1", "parsley-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1288,11 +1218,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-3",
     },
     available: 16,
-    images: [
-      "https://source.unsplash.com/random/600x400?chives",
-      "https://source.unsplash.com/random/600x400?chives-1",
-      "https://source.unsplash.com/random/600x400?chives-2",
-    ],
+    images: ["chives", "chives-1", "chives-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description:
@@ -1323,11 +1251,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-1",
     },
     available: 14,
-    images: [
-      "https://source.unsplash.com/random/600x400?dill",
-      "https://source.unsplash.com/random/600x400?dill-1",
-      "https://source.unsplash.com/random/600x400?dill-2",
-    ],
+    images: ["dill", "dill-1", "dill-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Dill is an annual herb in the celery family Apiaceae.",
@@ -1357,11 +1283,9 @@ export const productsData = [
       profileImage: "https://source.unsplash.com/random/100x100?profile-4",
     },
     available: 12,
-    images: [
-      "https://source.unsplash.com/random/600x400?tarragon",
-      "https://source.unsplash.com/random/600x400?tarragon-1",
-      "https://source.unsplash.com/random/600x400?tarragon-2",
-    ],
+    images: ["tarragon", "tarragon-1", "tarragon-2"].map(
+      (image) => `/images/plants/${image}.jpg`
+    ),
     sizes: ["Small", "Medium", "Large"],
     shippingInfo: "Ships in 1-3 business days",
     description: "Tarragon is a perennial herb in the sunflower family.",

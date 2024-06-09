@@ -1,11 +1,13 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import fs from "fs-extra";
 import path from "path";
 import inquirer from "inquirer";
 import { execSync } from "child_process";
 
-const TEMPLATE_PATH = path.join(__dirname, "../templates/default");
+let projectName = process.argv[2] || "my-candle-app";
+
+const TEMPLATE_PATH = path.join(__dirname, "../../src/templates/default");
 
 async function main() {
   const answers = await inquirer.prompt([
@@ -13,11 +15,16 @@ async function main() {
       type: "input",
       name: "projectName",
       message: "What is your project name?",
-      default: "my-candle-app",
+      default: projectName,
     },
   ]);
 
-  const targetPath = path.join(process.cwd(), answers.projectName);
+  const targetPath = path.join(
+    process.cwd(),
+    answers.projectName || projectName
+  );
+
+  console.log("---> Creating project at:", targetPath);
 
   try {
     await fs.copy(TEMPLATE_PATH, targetPath);

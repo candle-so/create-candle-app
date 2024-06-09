@@ -17,16 +17,16 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="absolute z-10 top-0 left-2 flex items-center mt-2 bg-slate-800 p-2 rounded-lg bg-opacity-30">
           <Avatar className="w-6 h-6 ring-2 ring-rose-400 ring-offset-2 ring-offset-slate-800">
             <AvatarImage
-              src={product.seller.profileImage}
-              alt={product.seller.name}
+              src={product?.seller?.profileImage}
+              alt={product?.seller?.name}
             />
-            <AvatarFallback>{product.seller.name[0]}</AvatarFallback>
+            <AvatarFallback>{product?.seller?.name[0]}</AvatarFallback>
           </Avatar>
-          <p className="text-sm text-white ml-2">{product.seller.name}</p>
+          <p className="text-sm text-white ml-2">{product?.seller?.name}</p>
         </div>
         <Carousel className="w-full">
           <CarouselContent>
-            {product.images.map((image, index) => (
+            {product?.images?.map((image, index) => (
               <CarouselItem key={index}>
                 <Image
                   src={image}
