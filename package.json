@@ -1,15 +1,16 @@
 {
   "name": "create-candle-app",
-  "version": "1.0.8",
+  "version": "1.0.17",
   "description": "Create a Next.js Marketplace with Candle setup",
   "main": "dist/bin/create-candle-app.js",
   "bin": {
     "create-candle-app": "./dist/bin/create-candle-app.js"
   },
   "scripts": {
+    "dev": "cd src/templates/default && npm run dev",
     "build": "tsc",
     "prepare": "npm run build",
-    "deploy": "npx tsc ./src/bin/deploy.ts && node ./src/bin/deploy.js"
+    "deploy": "npx tsc ./src/bin/deploy.ts && node ./dist/bin/deploy.js"
   },
   "dependencies": {
     "commander": "^9.0.0",
@@ -24,7 +25,26 @@
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "candle.so",
+    "next.js",
+    "react",
+    "marketplaces",
+    "typescript",
+    "cli",
+    "boilerplate",
+    "template",
+    "starter kit",
+    "tailwindcss",
+    "heroicons",
+    "shadcn",
+    "web development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/candle-so/create-candle-app.git"
+  },
+  "homepage": "https://candle.so/docs",
+  "author": "Uri Maxima",
+  "license": "MIT"
 }

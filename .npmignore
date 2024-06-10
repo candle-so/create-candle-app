@@ -1,0 +1,10 @@
+/src/**/*.js
+/node_modules/
+/**/node_modules
+/**/.next
+deploy.ts
+.env*.local
+.env
+/**/images/plants/*
+/dist/templates
+/src/types
