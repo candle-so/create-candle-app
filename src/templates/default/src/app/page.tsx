@@ -1,20 +1,15 @@
 // app/page.tsx
-import Navigation from "@/components/navigation";
-import HeroSection from "@/components/hero_section";
-import FeaturedPlants from "@/components/featured_plants";
-import HowItWorks from "@/components/how_it_works";
-import Testimonials from "@/components/testimonials";
-import CtaButton from "@/components/cta_button";
 
-export default function LandingPage() {
+import { LandingPage } from "@/components/landing";
+import Candle from "@candle-so/node";
+const candle = Candle.init({ api_key: process.env.CANDLE_API_KEY || "" });
+
+export default async function RootPage() {
+  let { data: platform } = await candle.platforms.retrievePlatform();
+
   return (
     <main className="">
-      <Navigation />
-      <HeroSection />
-      <FeaturedPlants />
-      <HowItWorks />
-      <Testimonials />
-      <CtaButton />
+      <LandingPage platform={platform} />
     </main>
   );
 }

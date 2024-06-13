@@ -10,6 +10,7 @@
     "dev": "cd src/templates/default && npm run dev",
     "build": "tsc",
     "prepare": "npm run build",
+    "update:template": "cd src/templates/default && npm uninstall @candle-so/node && npm install @candle-so/node@latest",
     "deploy": "npx tsc ./src/bin/deploy.ts && node ./dist/bin/deploy.js"
   },
   "dependencies": {
