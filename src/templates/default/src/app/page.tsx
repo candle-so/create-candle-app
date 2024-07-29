@@ -5,11 +5,13 @@ import Candle from "@candle-so/node";
 const candle = Candle.init({ api_key: process.env.CANDLE_API_KEY || "" });
 
 export default async function RootPage() {
-  let { data: platform } = await candle.platforms.retrievePlatform();
+  let { data: platform, error } = await candle.platforms.retrievePlatform();
+
+  if (error) return <main>Marketplace does not exist</main>;
 
   return (
-    <main className="">
-      <LandingPage platform={platform} />
+    <main>
+      <LandingPage platform={platform} />;
     </main>
   );
 }

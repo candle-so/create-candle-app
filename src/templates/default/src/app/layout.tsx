@@ -7,7 +7,29 @@ const candle = Candle.init({ api_key: process.env.CANDLE_API_KEY || "" });
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
-  let { data } = await candle.platforms.retrievePlatform();
+  let { data, error } = await candle.platforms.retrievePlatform();
+  if (error) {
+    let title = "Marketplace does not exist";
+    let description = "";
+
+    return {
+      viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+      metadataBase: new URL("https://www.candle.so"),
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        url: "https://www.candle.so/",
+        siteName: title,
+      },
+      twitter: {
+        title,
+        description,
+        creator: "@candle_so",
+      },
+    };
+  }
   const title = data.name;
   const description = data.description;
 

@@ -8,8 +8,6 @@ import Testimonials from "@/components/landing/testimonials";
 import CtaButton from "@/components/landing/cta_button";
 import { usePlatformStore } from "@/store/platform.store";
 
-import { IPlatform } from "schema-interface";
-
 export const LandingPage = ({ platform }: { platform: any }) => {
   const setPlatform = usePlatformStore((state) => state.setPlatform);
   setPlatform(platform);
