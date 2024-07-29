@@ -90,3 +90,6 @@ button {
   @apply transition-all duration-200 ease-in-out;
 }
 
+.btn-primary {
+  @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100;
+}

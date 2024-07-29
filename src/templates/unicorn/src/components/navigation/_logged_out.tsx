@@ -5,8 +5,6 @@ import { HeartIcon, SearchIcon, ShoppingCartIcon } from "lucide-react";
 import { Input } from "../ui/input";
 
 export const LoggedOutNavigation = () => {
-  const Icon = () => <SearchIcon size={16} />;
-
   return (
     <nav className="py-4 backdrop-blur sticky top-0 bg-cndl-light bg-opacity-30 z-20">
       <div className="container flex justify-between items-center">
@@ -14,7 +12,7 @@ export const LoggedOutNavigation = () => {
           <Logo />
         </Link>
         <div className="md:flex items-center justify-end space-x-8 hidden">
-          <div className="p-0.5 border-2 border-cndl-primary-300 rounded-full flex overflow-hidden">
+          <div className="p-0.5 border-2 border-cndl-primary-300 rounded-full flex overflow-hidden bg-cndl-light">
             <div className="bg-cndl-primary-800 text-cndl-light w-8 h-8 flex items-center justify-center rounded-full">
               <SearchIcon size={16} />
             </div>
@@ -27,7 +25,9 @@ export const LoggedOutNavigation = () => {
           </div>
 
           <Link href="/auth">
-            <Button variant="ghost" className="text-cndl-light bg-cndl-primary-500 rounded-full text-md hover:bg-cndl-primary-700 hover:text-cndl-primary-100">Sign In</Button>
+            <Button variant="ghost" className="btn-primary">
+              Sign In
+            </Button>
           </Link>
         </div>
       </div>

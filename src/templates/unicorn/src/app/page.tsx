@@ -1,48 +1,272 @@
-import Image from "next/image";
 import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
-import { Ticker } from "@/components/ticker";
-import { WhyStripeConnect } from "@/components/why_stripe_connect";
-import { HowToCode } from "@/components/how_to_code";
-import { BuiltWithCandle } from "@/components/built_with_candle";
-import { MailingListSubscriber } from "@/components/mailing_list_subscriber";
-import { Pricing } from "@/components/pricing";
-import { FAQs } from "@/components/faqs";
+import { CategoriesFilter } from "@/components/categories_filter";
+import { SidebarFilters } from "@/components/sidebar_filter";
 import { Footer } from "@/components/footer";
+import { iProduct, ProductList } from "@/components/product_list";
+
+const skills = [
+  {
+    id: 1,
+    name: "HTML",
+    image: null,
+  },
+  {
+    id: 2,
+    name: "CSS",
+    image: null,
+  },
+  {
+    id: 3,
+    name: "JavaScript",
+    image: null,
+  },
+  {
+    id: 4,
+    name: "React",
+    image: null,
+  },
+  {
+    id: 5,
+    name: "Next.js",
+    image: null,
+  },
+];
+
+const filters = [
+  {
+    label: "Language",
+    values: ["All", "JavaScript", "Python", "Java", "C++", "C#", "Ruby", "PHP", "Go", "Rust", "Swift", "Kotlin", "C", "C#", "R", "Julia", "Rust", "Dart", "Erlang", "Elixir", "F#", "F#"],
+  },
+];
+
+const products: iProduct[] = [
+  {
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },{
+    id: "1",
+    title: "Product 1",
+    summary: "Summary 1",
+    image: "/images/build_image_1.png",
+    isFavorite: false,
+    isPopular: true,
+    rating: 5.0,
+    price: 100,
+    metering: "hour",
+  },
+];
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-gradient-to-b from-cndl-light to-cndl-primary-50">
       <Navigation variant="logged-out" />
-      <Hero height="full">
-        <div className="container md:flex md:items-center md:px-20 md:space-x-10">
-          <div className="flex-1 space-y-3 md:space-y-5">
-            <h1 className="md:text-5xl text-2xl font-bold text-cndl-primary-900 leading-tight md:leading-none">Magical experiences powered by Stripe Connect.</h1>
-            <h2 className="md:text-2xl text-cndl-neutral-900 md:leading-8">Use our tools or hire us to build powerful platforms powered by Stripe Connect. </h2>
-            <div className="flex pt-4 space-x-6">
-              <Button variant="default">Build with Candle</Button>
-              <Button variant="secondary">Hire a designer</Button>
+      <div className="container space-y-8">
+        <Hero>
+          <div className="md:flex md:items-center md:px-20 md:space-x-10 bg-cndl-neutral-100 h-full w-full rounded-3xl">
+            <div className="md:w-1/2 space-y-5">
+              <h1 className="text-4xl md:text-5xl font-pacifico text-cndl-primary-500">Assemble killer teams ready to create real life literal Unicorns.</h1>
+              <p className="text-cndl-neutral-900 text-lg md:text-2xl">The Perfect Place to find the best Courses for advancing your career from industry leaders</p>
+              <div className="pt-4">
+                <Button variant="ghost" className="btn-primary">
+                  Get Started
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="flex-1 pt-8">
-            <div className="border-8 border-opacity-40 border-cndl-secondary-300 rounded-xl">
-              <Image className="w-full rounded-lg shadow-xl" width={1000} height={1000} objectFit="contain" src="/images/hero-dashboard.png" alt="What you could be doing" />
+        </Hero>
+        <div className="space-y-10">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-pacifico mb-6">Skills</h2>
+            <CategoriesFilter categories={skills as any} />
+          </div>
+          <div className="flex min-h-screen relative items-start space-x-6">
+            <div className="md:w-1/5 hidden md:block">
+              <SidebarFilters filters={filters} />
+            </div>
+            <div className="flex-1">
+              <ProductList products={products} />
             </div>
           </div>
         </div>
-      </Hero>
-      <div className="bg-cndl-dark">
-        <Ticker values={["Platforms", "Communities", "Marketplaces", "Talent Agencies", "Service Agencies", "Property Management"]} />
       </div>
-      <WhyStripeConnect />
+
+      {/* <WhyStripeConnect />
       <HowToCode />
       <BuiltWithCandle />
       <MailingListSubscriber />
       <Pricing />
       <div className="pt-4" id="faqs">
         <FAQs />
-      </div>
+      </div> */}
       <Footer />
     </main>
   );
