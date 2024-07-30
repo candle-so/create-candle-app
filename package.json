@@ -11,6 +11,7 @@
     "build": "tsc",
     "prepare": "npm run build",
     "update:template": "cd src/templates/default && npm uninstall @candle-so/node && npm install @candle-so/node@latest",
+    "update:template:unicorn": "cd src/templates/unicorn && npm uninstall @candle-so/node && npm install @candle-so/node@latest",
     "deploy": "npx tsc ./src/bin/deploy.ts && node ./dist/bin/deploy.js"
   },
   "dependencies": {

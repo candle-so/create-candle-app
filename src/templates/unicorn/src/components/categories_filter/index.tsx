@@ -14,7 +14,7 @@ export const CategoriesFilter = ({ categories }: { categories: ICategory[] }) =>
       <div className="min-w-96">
         <div className="flex items-center space-x-6">
           {categories.map((category: ICategory, i: number) => (
-            <div key={i} className="flex space-x-2 items-center bg-cndl-primary-50 hover:bg-cndl-primary-500 hover:text-cndl-primary-50 py-1 pl-1 px-4 rounded-full cursor-pointer text-xm">
+            <div key={i} className="flex space-x-3 items-center bg-cndl-primary-50 text-cndl-neutral-800 hover:bg-cndl-primary-500 hover:text-cndl-primary-50 py-1 pl-1 px-4 rounded-full cursor-pointer text-xm">
               <div className="flex items-center justify-center">
                 <Avatar className="w-6 h-6 ring-2 ring-cndl-primary-500">
                   <AvatarImage src={category?.image} alt={category?.name} />

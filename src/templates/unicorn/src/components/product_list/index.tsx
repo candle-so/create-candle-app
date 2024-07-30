@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { ProductTile } from "./_product_tile";
+import { Button } from "../ui/button";
 
 const sortBy = [
   { name: "Newest", value: "newest" },
@@ -27,7 +28,7 @@ export const ProductList = ({ products }: { products: iProduct[] }) => {
   const [sortByValue, setSortByValue] = useState(sortBy[0].value);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-16">
       <div className="flex justify-between pb-8 border-b border-cndl-primary-100">
         <div className=""></div>
         <div className="relative">
@@ -50,6 +51,9 @@ export const ProductList = ({ products }: { products: iProduct[] }) => {
         {products.map((product, index) => (
           <ProductTile key={index} product={product} />
         ))}
+      </div>
+      <div className="w-full flex justify-center">
+        <Button variant="ghost" className="btn-primary">Show More</Button>
       </div>
     </div>
   );

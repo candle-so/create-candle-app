@@ -15,13 +15,13 @@ export const Auth = ({ variant }: { variant?: "otp:email" | "otp:verify" }) => {
   };
 
   return (
-    <div className="max-w-sm h-full sm:h-auto bg-cndl-secondary-50 p-8 rounded-lg flex items-center">
+    <div className="max-w-sm h-full sm:h-auto border-2 border-cndl-primary-500 p-8 rounded-2xl flex items-center shadow-2xl">
       <div className="space-y-6">
         <div className="">
           <Logo />
         </div>
         <div className="">
-          <h1 className="text-2xl">Start Your 30-Day Free Trial Today.</h1>
+          <h1 className="text-2xl">Find Unicorn builders</h1>
           <p className="text-xs uppercase text-cndl-neutral-800">No credit card required.</p>
         </div>
         {(!variant || variant === "otp:email") && <AuthOTPEmail />}

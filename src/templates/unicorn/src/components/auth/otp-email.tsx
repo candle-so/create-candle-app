@@ -1,6 +1,6 @@
+import Candle from "@candle-so/node";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { fetchWrapper } from "@/lib/_fetch";
 import { useAuthStore } from "@/store/auth.store";
 import { MoveRightIcon } from "lucide-react";
 import { useState } from "react";
@@ -41,6 +41,7 @@ const GoogleIcon = () => {
   );
 };
 export const AuthOTPEmail = () => {
+  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
   const setAuthMode = useAuthStore((state) => state.setAuthMode);
   const setAuthEmail = useAuthStore((state) => state.setAuthEmail);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +49,7 @@ export const AuthOTPEmail = () => {
 
   const sendOTPCode = async () => {
     const data = { email };
-    const userResponse = await fetchWrapper({ url: "auth/otp/email", method: "POST", data });
+    const userResponse = await candle.auth.requestOtpFromEmail(data);
     if (userResponse.error) {
       setIsLoading(false);
       return;
@@ -75,10 +76,10 @@ export const AuthOTPEmail = () => {
         <label htmlFor="email" className="text-cndl-neutral-800 font-bold">
           Email<sup className="text-cndl-negative-500">*</sup>
         </label>
-        <Input className="border-none shadow-sm" type="email" id="email" placeholder="john.doe@example.so" onChange={(e) => setEmail(e.target.value)} value={email} />
+        <Input className="shadow-sm border-2 border-cndl-primary-500 py-2 px-4 rounded-full" type="email" id="email" placeholder="john.doe@example.so" onChange={(e) => setEmail(e.target.value)} value={email} />
       </div>
       <div className="pt-4">
-        <Button className="w-full space-x-2" onClick={sendOTPCode} disabled={!email || isLoading}>
+        <Button className="w-full space-x-2 btn-primary" onClick={sendOTPCode} disabled={!email || isLoading}>
           <span>Send OTP Code</span> <MoveRightIcon />
         </Button>
       </div>

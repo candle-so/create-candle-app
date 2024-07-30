@@ -1,23 +1,29 @@
+import Candle from "@candle-so/node";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { fetchWrapper } from "@/lib/_fetch";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
 import { useAuthStore } from "@/store/auth.store";
+import { createSession } from "@/lib/_cookies";
 
 export const AuthOTPVerify = () => {
+  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
   const { push } = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
   const authEmail = useAuthStore((state) => state.authEmail);
 
   const sendOTPCode = async (otpCode: number) => {
+    if (!authEmail) return;
     const data = { email: authEmail, token: otpCode.toString() };
-    const authenticatedUser = await fetchWrapper({ isLocal: true, url: "auth/verify-otp", method: "POST", data });
-    if (authenticatedUser.error) {
+    const { data: authenticatedUser, error }: any = await candle.auth.verifyOTP(data);
+    if (error) {
       setIsLoading(false);
       return;
     }
-    if (authenticatedUser.token) return push("/onboarding");
+    if (authenticatedUser.token) {
+      createSession(authenticatedUser);
+      return push("/onboarding");
+    }
     setIsLoading(false);
   };
 

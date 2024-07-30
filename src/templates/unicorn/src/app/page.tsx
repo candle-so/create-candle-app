@@ -52,7 +52,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -62,7 +63,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -72,7 +74,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -82,7 +85,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -92,7 +96,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -102,7 +107,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -112,7 +118,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -122,97 +129,8 @@ const products: iProduct[] = [
     rating: 5.0,
     price: 100,
     metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
-    id: "1",
-    title: "Product 1",
-    summary: "Summary 1",
-    image: "/images/build_image_1.png",
-    isFavorite: false,
-    isPopular: true,
-    rating: 5.0,
-    price: 100,
-    metering: "hour",
-  },{
+  },
+  {
     id: "1",
     title: "Product 1",
     summary: "Summary 1",
@@ -234,7 +152,7 @@ export default function Home() {
           <div className="md:flex md:items-center md:px-20 md:space-x-10 bg-cndl-neutral-100 h-full w-full rounded-3xl">
             <div className="md:w-1/2 space-y-5">
               <h1 className="text-4xl md:text-5xl font-pacifico text-cndl-primary-500">Assemble killer teams ready to create real life literal Unicorns.</h1>
-              <p className="text-cndl-neutral-900 text-lg md:text-2xl">The Perfect Place to find the best Courses for advancing your career from industry leaders</p>
+              <p className="text-cndl-neutral-900 text-lg md:text-2xl">Why hire just one rockstar, when you could hire an entire hitsquad at once.</p>
               <div className="pt-4">
                 <Button variant="ghost" className="btn-primary">
                   Get Started
@@ -259,14 +177,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <WhyStripeConnect />
-      <HowToCode />
-      <BuiltWithCandle />
-      <MailingListSubscriber />
-      <Pricing />
-      <div className="pt-4" id="faqs">
-        <FAQs />
-      </div> */}
       <Footer />
     </main>
   );
