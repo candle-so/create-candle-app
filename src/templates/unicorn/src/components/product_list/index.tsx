@@ -1,9 +1,9 @@
 "use client";
-
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { ProductTile } from "./_product_tile";
 import { Button } from "../ui/button";
+import { IProductWithUser } from "@/app/page";
 
 const sortBy = [
   { name: "Newest", value: "newest" },
@@ -12,19 +12,7 @@ const sortBy = [
   { name: "Popularity", value: "popularity" },
 ];
 
-export interface iProduct {
-  id: string;
-  title: string;
-  summary: string;
-  image: string;
-  isFavorite: boolean;
-  isPopular: boolean;
-  rating: number;
-  price: number;
-  metering: string;
-}
-
-export const ProductList = ({ products }: { products: iProduct[] }) => {
+export const ProductList = ({ products }: { products: IProductWithUser[] }) => {
   const [sortByValue, setSortByValue] = useState(sortBy[0].value);
 
   return (
@@ -53,7 +41,9 @@ export const ProductList = ({ products }: { products: iProduct[] }) => {
         ))}
       </div>
       <div className="w-full flex justify-center">
-        <Button variant="ghost" className="btn-primary">Show More</Button>
+        <Button variant="ghost" className="btn-primary">
+          Show More
+        </Button>
       </div>
     </div>
   );

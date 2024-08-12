@@ -13,8 +13,8 @@ declare module "schema-interface" {
   export interface ISchema {
     id: T_UUID;
     mode: "test" | "live";
-    updated?: Date;
-    created: Date;
+    updated?: Date | string;
+    created: Date | string;
   }
 
   export interface IPlatform extends ISchema {
@@ -42,10 +42,11 @@ declare module "schema-interface" {
     detailsSubmitted?: boolean;
     timezone: T_TIMEZONE;
     stripeCustomerId?: string;
-    authenticated?: Date;
+    authenticated?: Date | string;
     links?: IUserLink[];
     paymentMethods?: IPaymentMethod[];
-    scheduledDeletion?: Date;
+    scheduledDeletion?: Date | string | null;
+    onboarded?: Date | string;
   }
 
   interface Icommunities extends ISchema {
@@ -208,10 +209,16 @@ declare module "schema-interface" {
     quantity?: T_QUANTITY;
     isAvailableInStock?: boolean;
     isEnabled?: boolean;
+    useSeasonalPrices?: boolean;
+    activeSubscriptions?: number;
+    subscriptionLimit?: number;
+    buyerLimit?: number;
+    activeBuyers?: number;
     category?: string;
     subcategory?: string;
     tags?: string[];
     price: number;
+    expires?: Date | string | null;
     seasonalPrices?: ISeasonalPrice[];
   }
 

@@ -91,5 +91,13 @@ button {
 }
 
 .btn-primary {
-  @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100;
+  @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100 space-x-2;
+}
+
+.input-primary {
+  @apply shadow-sm border-2 border-cndl-primary-800 py-2 px-4 rounded-md;
+}
+
+.textarea-primary {
+  @apply shadow-sm border-2 border-cndl-primary-800 py-2 px-4 rounded-md min-h-48;
 }
