@@ -1,11 +1,15 @@
 import Candle from "@candle-so/node";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
 import { useAuthStore } from "@/store/auth.store";
 import { createSession } from "@/lib/_cookies";
+import { useUserStore } from "@/store/user.store";
 
 export const AuthOTPVerify = () => {
+  const setMe: any = useUserStore((state) => state.setMe);
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
   const { push } = useRouter();
 
@@ -22,7 +26,11 @@ export const AuthOTPVerify = () => {
     }
     if (authenticatedUser.token) {
       createSession(authenticatedUser);
-      return push("/onboarding");
+      // console.log("authenticatedUser", authenticatedUser);
+
+      const { error, data: me } = await candle.users.retrieveUser(authenticatedUser.token);
+      setMe(me);
+      return push(`/${redirect}` || "/onboarding");
     }
     setIsLoading(false);
   };

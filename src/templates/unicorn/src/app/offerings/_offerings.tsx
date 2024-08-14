@@ -167,20 +167,19 @@ export const Offerings = () => {
       price,
       metering: meteringValue,
     };
-
     let newProduct = await candle.products.createProduct(_product);
-    console.log("newProduct", newProduct);
+    // console.log("newProduct", newProduct);
     setProduct(_product as IProduct);
     setProducts([...products, _product]);
   };
 
   const onUpload = (data: any) => {
-    console.log("onUpload", data);
+    // console.log("onUpload", data);
     setImage(data.url);
   };
 
   const onRemove = (data: any) => {
-    console.log("onRemove", data);
+    // console.log("onRemove", data);
   };
 
   const drawerTitle = (

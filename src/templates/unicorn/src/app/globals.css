@@ -97,6 +97,9 @@ button {
 .input-primary {
   @apply shadow-sm border-2 border-cndl-primary-800 py-2 px-4 rounded-md;
 }
+.input-primary-xs {
+  @apply shadow-sm border-2 border-cndl-primary-800 py-1 px-2 rounded-md text-sm;
+}
 
 .textarea-primary {
   @apply shadow-sm border-2 border-cndl-primary-800 py-2 px-4 rounded-md min-h-48;

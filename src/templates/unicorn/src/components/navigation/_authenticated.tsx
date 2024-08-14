@@ -13,7 +13,7 @@ export const AuthenticatedNavigation = ({ me, breadcrumbs }: { me: any; breadcru
     <nav className="py-4 backdrop-blur sticky top-0 bg-cndl-light bg-opacity-30 z-20">
       <div className="container flex justify-between items-center">
         <div className="flex space-x-4 items-end">
-          <Link href="/overview">
+          <Link href="/">
             <Logo />
           </Link>
           {breadcrumbs && (

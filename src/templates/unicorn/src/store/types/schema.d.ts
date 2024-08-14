@@ -1,14 +1,14 @@
 // types.ts
 
 declare module "schema-interface" {
-  type T_UUID = string;
-  type T_EMAIL = string;
-  type T_FULLNAME = string;
-  type T_TIMEZONE = "America/New_York" | string;
-  type T_CURRENCY = "usd" | string;
-  type T_QUANTITY = number;
-  type T_QUANTITY_HOURS = number;
-  type T_TIME = "string"; // "00:00:00" - "23:59:59"
+  export type T_UUID = string;
+  export type T_EMAIL = string;
+  export type T_FULLNAME = string;
+  export type T_TIMEZONE = "America/New_York" | string;
+  export type T_CURRENCY = "usd" | string;
+  export type T_QUANTITY = number;
+  export type T_QUANTITY_HOURS = number;
+  export type T_TIME = "string"; // "00:00:00" - "23:59:59"
 
   export interface ISchema {
     id: T_UUID;
@@ -293,7 +293,8 @@ declare module "schema-interface" {
 
   interface ICalendarAvailability extends ISchema {
     calendar_id: ICalendar.id;
-    dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+    dayOfWeek?: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday" | null;
+    overrideDate?: Date;
     startTime: T_TIME;
     endTime: T_TIME;
   }

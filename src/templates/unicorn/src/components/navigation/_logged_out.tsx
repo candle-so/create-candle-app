@@ -1,10 +1,14 @@
+"use client";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { HeartIcon, SearchIcon, ShoppingCartIcon } from "lucide-react";
 import { Input } from "../ui/input";
+import { usePathname } from "next/navigation";
 
 export const LoggedOutNavigation = () => {
+  const pathname = usePathname().slice(1);
+
   return (
     <nav className="py-4 backdrop-blur sticky top-0 bg-cndl-light bg-opacity-30 z-20">
       <div className="container flex justify-between items-center">
@@ -24,7 +28,7 @@ export const LoggedOutNavigation = () => {
             <ShoppingCartIcon className="text-cndl-primary-400" size={24} />
           </div>
 
-          <Link href="/auth">
+          <Link href={`/auth?redirect=${pathname}`}>
             <Button variant="ghost" className="btn-primary">
               Sign In
             </Button>
