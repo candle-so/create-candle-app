@@ -28,6 +28,7 @@ export const AuthenticatedNavigation = ({ me, breadcrumbs }: { me: any; breadcru
         </div>
         <div className="flex items-center justify-end gap-4">
           <div className="space-x-4 hidden md:flex">
+            <Link href="/offerings">Sell</Link>
             <Link href="/settings/account">Settings</Link>
           </div>
           <div className="flex items-center">

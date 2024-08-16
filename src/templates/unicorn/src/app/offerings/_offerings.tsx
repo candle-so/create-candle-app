@@ -9,13 +9,13 @@ import Uploader from "@/components/upload";
 import { currencify } from "@/lib/currencify";
 import { formatDate } from "@/lib/time";
 import { PlusCircleIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useProductStore } from "@/store/products.store";
-import { IProduct } from "schema-interface";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useUserStore } from "@/store/user.store";
 
 export const TriggerButtonIcon = () => {
   return <PlusCircleIcon size={20} />;
@@ -48,7 +48,7 @@ const _skills = [
   },
 ];
 
-const meterings = [
+const cycles = [
   { name: "Hourly", value: "hourly" },
   { name: "Daily", value: "daily" },
   { name: "Monthly", value: "monthly" },
@@ -57,7 +57,7 @@ const meterings = [
 
 export const Offerings = () => {
   const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
-  const product = useProductStore((state) => state.product);
+  const me = useUserStore((state) => state.me);
   const products = useProductStore((state) => state.products);
   const setProduct = useProductStore((state) => state.setProduct);
   const setProducts = useProductStore((state) => state.setProducts);
@@ -70,7 +70,7 @@ export const Offerings = () => {
   const [categories, setCategories] = useState<any>(_skills);
   const [tableData, setTableData] = useState([]);
   const [activeTab, setActiveTab] = useState<string>();
-  const [meteringValue, setMeteringValue] = useState(meterings[0].value);
+  const [cycleValue, setCycleValue] = useState(cycles[0].value);
 
   const field = {
     label: "",
@@ -124,6 +124,13 @@ export const Offerings = () => {
       },
     },
     {
+      accessorKey: "category",
+      header: () => <div className="text-cndl-dark">Category</div>,
+      cell: ({ row }: any) => {
+        return <div className="text-cndl-dark font-bold capitalize">{row.getValue("category")}</div>;
+      },
+    },
+    {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }: any) => {
@@ -134,20 +141,10 @@ export const Offerings = () => {
       accessorKey: "price",
       header: "Rate",
       cell: ({ row }: any) => {
-        return (
-          <div className="text-cndl-dark">
-            {currencify(row.getValue("spent"))} / {row.getValue("metering")}
-          </div>
-        );
+        return <div className="text-cndl-dark">{currencify(row.getValue("spent"))}</div>;
       },
     },
-    {
-      accessorKey: "updated",
-      header: () => <div className="text-cndl-neutral-700">Updated</div>,
-      cell: ({ row }: any) => {
-        return <div className="text-cndl-neutral-700">{row.getValue("updated") ? formatDate({ dateString: `${row.getValue("updated")}` }).fullDate : "---"}</div>;
-      },
-    },
+
     {
       accessorKey: "created",
       header: () => <div className="text-cndl-neutral-700">Created</div>,
@@ -159,18 +156,20 @@ export const Offerings = () => {
 
   const saveProduct = async () => {
     const _product: any = {
-      id: products.length + 1,
       image,
+      user_id: me?.id,
       name,
       description,
       category,
       price,
-      metering: meteringValue,
+      cycle: cycleValue,
     };
-    let newProduct = await candle.products.createProduct(_product);
-    // console.log("newProduct", newProduct);
-    setProduct(_product as IProduct);
-    setProducts([...products, _product]);
+    let { error, data: newProduct } = await candle.products.createProduct(_product);
+    if (error) {
+      return;
+    }
+    setProduct(newProduct);
+    setProducts([...products, newProduct]);
   };
 
   const onUpload = (data: any) => {
@@ -181,6 +180,21 @@ export const Offerings = () => {
   const onRemove = (data: any) => {
     // console.log("onRemove", data);
   };
+
+  const loadProducts = async () => {
+    if (!me) return;
+    let { error, data: _products } = await candle.products.listUserProducts(me.id);
+    if (error) {
+      return;
+    }
+    setProducts(_products);
+    setTableData(_products);
+  };
+
+  useEffect(() => {
+    if (!me) return;
+    loadProducts();
+  }, [me]);
 
   const drawerTitle = (
     <div className="flex space-x-2">
@@ -221,12 +235,12 @@ export const Offerings = () => {
                 <Input type="number" placeholder="$50.00" className="input-primary" value={price} onChange={(e) => setPrice(e.target.value)} />
               </div>
               <div className="w-1/3">
-                <Select onValueChange={(value) => setMeteringValue(value)} defaultValue={meteringValue}>
+                <Select onValueChange={(value) => setCycleValue(value)} defaultValue={cycleValue}>
                   <SelectTrigger className="relative bg-cndl-neutral-100 font-bold rounded-full text-cndl-neutral-700">
                     <SelectValue placeholder="Type of Application" />
                   </SelectTrigger>
                   <SelectContent className="relative space-x-2">
-                    {meterings.map((meter, index) => (
+                    {cycles.map((meter, index) => (
                       <SelectItem key={index} value={meter.value}>
                         {meter.name}
                       </SelectItem>

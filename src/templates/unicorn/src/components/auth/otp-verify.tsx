@@ -30,7 +30,7 @@ export const AuthOTPVerify = () => {
 
       const { error, data: me } = await candle.users.retrieveUser(authenticatedUser.token);
       setMe(me);
-      return push(`/${redirect}` || "/onboarding");
+      return push(redirect ? `/${redirect}` : "/onboarding");
     }
     setIsLoading(false);
   };

@@ -1,11 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { useState } from "react";
 import { ProductTile } from "./_product_tile";
-import { Button } from "../ui/button";
-import { useProductStore } from "@/store/products.store";
-import Candle from "@candle-so/node";
-// import { productsData } from "@/app/_data/index.data";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { IProduct } from "schema-interface";
 
 const sortBy = [
   { name: "Newest", value: "newest" },
@@ -14,23 +12,8 @@ const sortBy = [
   { name: "Popularity", value: "popularity" },
 ];
 
-export const ProductList = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
-  const products = useProductStore((state) => state.products);
-  const setProducts = useProductStore((state) => state.setProducts);
+export const ProductList = ({ products }: { products: IProduct[] }) => {
   const [sortByValue, setSortByValue] = useState(sortBy[0].value);
-
-  const fetchProducts = async () => {
-    let { error, data } = await candle.products.listProducts();
-    if (error) {
-      return;
-    }
-    // setProducts(productsData as any);
-    setProducts(data);
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   return (
     <div className="space-y-8 pb-16">
@@ -53,7 +36,7 @@ export const ProductList = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {products.map((product: any, index: number) => (
+        {products.map((product, index) => (
           <ProductTile key={index} product={product} />
         ))}
       </div>

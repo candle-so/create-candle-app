@@ -202,6 +202,7 @@ declare module "schema-interface" {
   export interface IProduct extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
+    user?: IUser;
     parent_product_id?: IProduct.id;
     name: string;
     description?: string;
@@ -218,6 +219,7 @@ declare module "schema-interface" {
     subcategory?: string;
     tags?: string[];
     price: number;
+    cycle?: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
     expires?: Date | string | null;
     seasonalPrices?: ISeasonalPrice[];
   }
@@ -236,7 +238,7 @@ declare module "schema-interface" {
     buyerLimit?: number;
     activeSubscriptions?: number;
     activeBuyers?: number;
-    metering: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
+    cycle: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
     tags?: string[];
     price: number;
     seasonalPrices?: ISeasonalPrice[];

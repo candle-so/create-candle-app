@@ -76,10 +76,24 @@ export const DayOfWeek = ({ day, overrideDate }: { day?: string | null; override
   useEffect(() => {
     if (!availabilities) return;
 
-    let _dayAvailabilities = day ? availabilities.filter((a: any) => a.dayOfWeek === day) : availabilities.filter((a: any) => !a.dayOfWeek);
-    if (_dayAvailabilities.length > 0) setChecked(true);
+    let _dayAvailabilities = day
+      ? availabilities.filter((a: any) => a.dayOfWeek === day)
+      : availabilities.filter((a: any) => {
+          let incomingOverrideDate: any = overrideDate || null;
+          let localOverrideDate = a.overrideDate || null;
+
+          if (incomingOverrideDate) {
+            incomingOverrideDate = new Date(incomingOverrideDate);
+            const year = incomingOverrideDate.getFullYear();
+            const month = String(incomingOverrideDate.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+            const day = String(incomingOverrideDate.getDate()).padStart(2, "0");
+            incomingOverrideDate = `${year}-${month}-${day}`;
+          }
+          return incomingOverrideDate === localOverrideDate && !a.dayOfWeek;
+        });
+    setChecked(_dayAvailabilities.length > 0);
     setDayAvailabilities(_dayAvailabilities);
-  }, [availabilities]);
+  }, [availabilities, overrideDate]);
 
   return (
     <div className="flex justify-between items-start w-full space-x-6">
@@ -92,14 +106,17 @@ export const DayOfWeek = ({ day, overrideDate }: { day?: string | null; override
         </div>
       )}
       <div className="flex-1 py-0.5 space-y-4">
-        {!checked && <div className="text-sm italic py-1.5 text-cndl-neutral-700 pl-4">Unavailable</div>}
+        {!checked && (overrideDate || day) && <div className="text-sm italic py-1.5 text-cndl-neutral-700 pl-4">No times set</div>}
+        {!checked && !overrideDate && !day && <div className="text-sm italic py-1.5 text-cndl-neutral-700 pl-4">Select a date</div>}
         {checked && dayAvailabilities?.map((a: any, i: number) => <AvailabilityTimeRange key={i} defaultAvailability={a} onDelete={() => deleteRow(a)} onChange={(availability) => updateAvailabilities(availability)} />)}
       </div>
-      <div className="text-right py-2">
-        <div className="bg-cndl-primary-50 flex p-0.5 cursor-pointer rounded ring-1 ring-cndl-primary-50 ring-offset-4" onClick={() => addTimeRow()}>
-          <PlusIcon className="text-cndl-primary-300" size={16} />
+      {(overrideDate || day) && (
+        <div className="text-right py-2">
+          <div className="bg-cndl-primary-50 flex p-0.5 cursor-pointer rounded ring-1 ring-cndl-primary-50 ring-offset-4" onClick={() => addTimeRow()}>
+            <PlusIcon className="text-cndl-primary-300" size={16} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

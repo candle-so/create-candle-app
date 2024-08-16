@@ -1,7 +1,8 @@
 import { HeartIcon } from "lucide-react";
 import { currencify } from "@/lib/currencify";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IProduct } from "schema-interface";
 
 export const ProductTile = ({ product }: { product: IProduct }) => {
@@ -15,7 +16,7 @@ export const ProductTile = ({ product }: { product: IProduct }) => {
                 <AvatarImage src={product.user?.image} alt={product.user?.name} />
                 {(product.user?.name || product.user?.username) && (
                   <AvatarFallback className="bg-cndl-primary-200 text-cndl-primary-700 font-bold text-lg">
-                    {((product.user?.name as string) || (product.user?.username as string) || (product.user?.email as string))
+                    {((product.user?.name as string) || (product.user?.username as string))
                       .split(" ")
                       .map((s: any) => s[0])
                       .join("")
@@ -29,7 +30,7 @@ export const ProductTile = ({ product }: { product: IProduct }) => {
               <div className="text-cndl-primary-500 text-sm">{product.name}</div>
               <div className="text-cndl-neutral-700 text-xs flex space-x-2">
                 <div className="">{currencify(product.price / 100)}</div>
-                <div className="">{product.user?.timezone?.replace("_", " ")}</div>
+                <div className="">{product.user?.timezone.replace("_", " ")}</div>
               </div>
             </div>
           </div>
