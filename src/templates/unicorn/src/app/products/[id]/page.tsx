@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Product } from "@/components/product";
 import Candle from "@candle-so/node";
@@ -12,6 +13,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
     <main className="bg-gradient-to-b from-cndl-light to-cndl-primary-50">
       <Navigation />
       <Product product={product} />
+      <Footer />
     </main>
   );
 }

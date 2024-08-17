@@ -1,7 +1,11 @@
-import { MoveLeftIcon, MoveRightIcon, StarHalfIcon, StarIcon } from "lucide-react";
+import { StarHalfIcon, StarIcon } from "lucide-react";
 import { Availability } from "./_availability";
 import { currencify } from "@/lib/currencify";
 import { IProduct } from "schema-interface";
+import { Portfolio } from "./_portfolio";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { formatDate } from "@/lib/time";
+import { SimilarProducts } from "./_similar_products";
 
 const reviews = {
   stats: {
@@ -9,6 +13,17 @@ const reviews = {
     count: 786,
     tally: [647, 114, 22, 3, 0],
   },
+  comments: [
+    {
+      user: {
+        name: "Jane Cooper",
+        image: "/images/avatar-1.png",
+      },
+      stars: 5,
+      message: "Hard worker, easy to work with, great communication, and the best of both worlds.",
+      created: "2022-01-01",
+    },
+  ],
 };
 
 export const Product = ({ product }: { product: IProduct }) => {
@@ -67,17 +82,8 @@ export const Product = ({ product }: { product: IProduct }) => {
           <Availability />
         </div>
       </div>
-      <div className="pt-8 bg-gradient-to-b from-cndl-primary-50 to-white pb-16 space-y-4 min-h-80">
-        <div className="container max-w-7xl">
-          <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-pacifico">Portfolio</h3>
-            <div className="flex items-center space-x-10 bg-cndl-light px-4 py-2 rounded-full ring-2 ring-offset-4 ring-cndl-primary-50">
-              <MoveLeftIcon size={24} className="text-cndl-dark" />
-              <MoveRightIcon size={24} className="text-cndl-dark" />
-            </div>
-          </div>
-        </div>
-        {/* <div className="container max-w-7xl text-xl capitalize text-cndl-primary-300">Be the 1st to hire me</div> */}
+      <div className="bg-gradient-to-b from-cndl-primary-50 to-white pt-16 pb-16 space-y-4 min-h-80">
+        <Portfolio />
       </div>
       <div className="bg-white">
         <div className="container max-w-7xl space-y-8">
@@ -107,9 +113,36 @@ export const Product = ({ product }: { product: IProduct }) => {
                 ))}
               </div>
             </div>
-            <div className="w-3/5 rounded-xl p-4 bg-cndl-light"></div>
+            <div className="w-3/5 rounded-xl p-4 bg-cndl-light">
+              {reviews.comments.map((comment, index) => (
+                <div key={index} className="flex space-x-6 items-start">
+                  <div className="pt-1">
+                    <Avatar className="w-10 h-10 ring-4 ring-offset-2 ring-cndl-primary-50">
+                      <AvatarImage src={comment.user.image} alt={comment.user.name} />
+                      <AvatarFallback className="bg-cndl-primary-200 text-cndl-primary-700 font-bold">
+                        {comment.user.name
+                          .split(" ")
+                          .map((s: any) => s[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="">
+                      <h4 className="text-lg font-bold">{comment.user.name}</h4>
+                      <div className="text-xs text-cndl-neutral-800">{formatDate({ dateString: comment.created }).relativeTimeLong}</div>
+                    </div>
+                    <p className="max-w-lg pr-8 text-sm">{comment.message}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+      </div>
+      <div className="container max-w-7xl space-y-8 pt-24">
+        <h3 className="text-2xl font-pacifico">Similar Builders</h3>
+        <SimilarProducts />
       </div>
     </div>
   );
