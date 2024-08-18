@@ -6,6 +6,7 @@ import { Portfolio } from "./_portfolio";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { formatDate } from "@/lib/time";
 import { SimilarProducts } from "./_similar_products";
+import Candle from "@candle-so/node";
 
 const reviews = {
   stats: {
@@ -27,6 +28,7 @@ const reviews = {
 };
 
 export const Product = ({ product }: { product: IProduct }) => {
+  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
   const setRatingStars = (rating: number) => {
     const stars = [];
     const wholeStars = Math.floor(reviews.stats.rating);
@@ -79,7 +81,7 @@ export const Product = ({ product }: { product: IProduct }) => {
               </div>
             </div>
           </div>
-          <Availability />
+          <Availability product_id={product.id} user_id={product.user?.id as string} cta="Add to Cart"  />
         </div>
       </div>
       <div className="bg-gradient-to-b from-cndl-primary-50 to-white pt-16 pb-16 space-y-4 min-h-80">
