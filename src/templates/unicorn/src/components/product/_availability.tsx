@@ -8,6 +8,8 @@ import { ICalendarAvailability } from "schema-interface";
 import { useUserStore } from "@/store/user.store";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCalendarStore } from "@/store/calendar.store";
+import { addDaysToDate, calculateTimeDifference, formatDate } from "@/lib/time";
 
 export const Availability = ({ user_id, product_id, cta }: { user_id: string; product_id: string; cta: string }) => {
   const pathname = usePathname().slice(1);
@@ -16,6 +18,8 @@ export const Availability = ({ user_id, product_id, cta }: { user_id: string; pr
   const [calendarFrom, setCalendarFrom] = useState<Date | undefined>();
   const [calendarTo, setCalendarTo] = useState<Date | undefined>();
   const [disabledDayOfWeek, setDisabledDayOfWeek] = useState<number[]>([]);
+  const setAvailabilities: any = useCalendarStore((state) => state.setAvailabilities);
+  const availabilities: any = useCalendarStore((state) => state.availabilities);
   const updateCalendarDate = (from: any, to: any) => {
     setCalendarFrom(from);
     setCalendarTo(to);
@@ -35,13 +39,56 @@ export const Availability = ({ user_id, product_id, cta }: { user_id: string; pr
     if (error) return;
 
     disableDOW(data.availability);
+    setAvailabilities(data.availability);
+  };
+
+  const calculateQuantityFromAvailability = () => {
+    const dow = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const hoursAvailablePerDOW: any = {};
+
+    for (let i = 0; i < dow.length; i++) {
+      const day = dow[i];
+      availabilities
+        .filter((availability: ICalendarAvailability) => availability.dayOfWeek && availability.dayOfWeek === day)
+        .forEach((availability: ICalendarAvailability) => {
+          const hoursAvailable = calculateTimeDifference({
+            t1: availability.startTime,
+            t2: availability.endTime,
+            limiter: "hours",
+            format: "HH:mm:ss",
+          });
+          hoursAvailablePerDOW[day] = hoursAvailablePerDOW[day] ? hoursAvailablePerDOW[day] + hoursAvailable : hoursAvailable;
+        });
+    }
+
+    const totalDays = calculateTimeDifference({
+      t1: new Date(calendarFrom as Date).toISOString(),
+      t2: new Date(calendarTo as Date).toISOString(),
+      limiter: "days",
+    });
+
+    let quantity = 0;
+
+    for (let i = 0; i < totalDays + 1; i++) {
+      const dateString = addDaysToDate({ startDate: new Date(calendarFrom as Date).toISOString(), days: i });
+      let day = formatDate({ dateString }).day.toLocaleLowerCase();
+      let dayIndex = formatDate({ dateString }).dayIndex;
+
+      if (!disabledDayOfWeek.includes(dayIndex)) {
+        quantity += hoursAvailablePerDOW[day] || 0;
+      }
+    }
+
+    return quantity;
   };
 
   const addProductToCart = async () => {
     if (!me) return;
 
+    const quantity = calculateQuantityFromAvailability();
+
     let { accessToken } = getAuthTokens();
-    const { error, data } = await candle.carts.addProductToUserCart(product_id, {}, accessToken as string);
+    const { error, data } = await candle.carts.addProductToUserCart(product_id, { quantity }, accessToken as string);
     console.log("addProductToCart", error, data);
   };
 
@@ -55,12 +102,6 @@ export const Availability = ({ user_id, product_id, cta }: { user_id: string; pr
       <div className="pt-4 flex items-center justify-between pb-8">
         <h2 className="font-pacifico text-2xl">My Availability</h2>
 
-        {!me && (
-          <Button className="w-full max-w-xs btn-primary space-x-2 hover:no-underline" variant="link" onClick={addProductToCart}>
-            <Link href={`/auth?redirect=${pathname}`}>Sign in to continue</Link>
-          </Button>
-        )}
-
         {me && (
           <Button className="w-full max-w-xs btn-primary space-x-2" onClick={addProductToCart}>
             {cta}
@@ -68,7 +109,16 @@ export const Availability = ({ user_id, product_id, cta }: { user_id: string; pr
         )}
       </div>
 
-      <div className="p-2 bg-cndl-light ring-2 ring-cndl-primary-50 ring-offset-4 rounded-2xl">
+      <div className="bg-cndl-light ring-2 ring-cndl-primary-50 ring-offset-4 rounded-2xl relative overflow-hidden">
+        {!me && (
+          <div className="absolute w-full h-full backdrop-blur-sm z-50">
+            <div className="flex w-full h-full items-center justify-center bg-cndl-dark bg-opacity-10">
+              <Button className="w-full max-w-xs btn-primary space-x-2 hover:no-underline" variant="link" onClick={addProductToCart}>
+                <Link href={`/auth?redirect=${pathname}`}>Sign in to continue</Link>
+              </Button>
+            </div>
+          </div>
+        )}
         <Calendar mode="range" numberOfMonths={2} selected={{ from: calendarFrom, to: calendarTo }} disabled={[{ before: new Date() }, { dayOfWeek: disabledDayOfWeek }]} onSelect={({ from, to }: any) => updateCalendarDate(from, to)} />
       </div>
     </div>

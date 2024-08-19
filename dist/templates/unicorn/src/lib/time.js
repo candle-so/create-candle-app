@@ -60,8 +60,8 @@ const humanifyDateRanges = ({ tstart, tEnd }) => {
 };
 exports.humanifyDateRanges = humanifyDateRanges;
 const calculateTimeDifference = ({ t1, t2, limiter, format }) => {
-    const time1 = (0, moment_timezone_1.default)(t1, format || "HH:mm:ssZ");
-    const time2 = (0, moment_timezone_1.default)(t2, format || "HH:mm:ssZ");
+    const time1 = (0, moment_timezone_1.default)(t1, format || "YYYY-MM-DD HH:mm:ssZ");
+    const time2 = (0, moment_timezone_1.default)(t2, format || "YYYY-MM-DD HH:mm:ssZ");
     let difference;
     difference = time2.diff(time1, limiter, true);
     return +difference.toFixed(2);

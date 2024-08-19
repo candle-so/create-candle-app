@@ -87,8 +87,8 @@ export const humanifyDateRanges = ({ tstart, tEnd }: { tstart: string; tEnd: str
 };
 
 export const calculateTimeDifference = ({ t1, t2, limiter, format }: { t1: string; t2: string; format?: string | null; limiter: "months" | "days" | "hours" | "minutes" | "seconds" }): number | any => {
-  const time1 = moment(t1, format || "HH:mm:ssZ");
-  const time2 = moment(t2, format || "HH:mm:ssZ");
+  const time1 = moment(t1, format || "YYYY-MM-DD HH:mm:ssZ");
+  const time2 = moment(t2, format || "YYYY-MM-DD HH:mm:ssZ");
   let difference: number;
   difference = time2.diff(time1, limiter, true);
   return +difference.toFixed(2);
