@@ -1,8 +1,7 @@
-"use client";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { HeartIcon, SearchIcon, ShoppingCartIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
 
@@ -21,11 +20,6 @@ export const LoggedOutNavigation = () => {
               <SearchIcon size={16} />
             </div>
             <Input className="border-none flex-1 text-cndl-primary-800" placeholder="Search for..." />
-          </div>
-
-          <div className="flex items-center space-x-3">
-            <HeartIcon className="text-cndl-primary-400" size={24} />
-            <ShoppingCartIcon className="text-cndl-primary-400" size={24} />
           </div>
 
           <Link href={`/auth?redirect=${pathname}`}>

@@ -1,22 +1,19 @@
-// types.ts
-
 declare module "schema-interface" {
-  export type T_UUID = string;
-  export type T_EMAIL = string;
-  export type T_FULLNAME = string;
-  export type T_TIMEZONE = "America/New_York" | string;
-  export type T_CURRENCY = "usd" | string;
-  export type T_QUANTITY = number;
-  export type T_QUANTITY_HOURS = number;
-  export type T_TIME = "string"; // "00:00:00" - "23:59:59"
-
+  type T_UUID = string;
+  type T_EMAIL = string;
+  type T_FULLNAME = string;
+  type T_TIMEZONE = "America/New_York" | string;
+  type T_CURRENCY = "usd" | string;
+  type T_QUANTITY = number;
+  type T_QUANTITY_HOURS = number;
+  type T_TIME = "string"; // "00:00:00" - "23:59:59"
   export interface ISchema {
     id: T_UUID;
-    mode: "test" | "live";
-    updated?: Date | string;
-    created: Date | string;
+    mode: "_test" | "test" | "live";
+    updated?: Date;
+    created: Date;
   }
-
+  // Platform
   export interface IPlatform extends ISchema {
     name: string;
     admins?: IUser[];
@@ -27,6 +24,14 @@ declare module "schema-interface" {
     activeSubscription?: string;
   }
 
+  interface IPlatformKeys extends ISchema {
+    platform_id?: IPlatform.id;
+    testSecretKey: string;
+    liveSecretKey: string;
+    scopes: string[];
+  }
+
+  // Users
   export interface IUser extends ISchema {
     platform_id?: IPlatform.id;
     email: T_EMAIL;
@@ -36,31 +41,26 @@ declare module "schema-interface" {
     firstName?: string;
     lastName?: string;
     image?: string;
-    plan?: string;
     stripeConnectId?: string;
     chargesEnabled?: boolean;
     detailsSubmitted?: boolean;
     timezone: T_TIMEZONE;
     stripeCustomerId?: string;
-    authenticated?: Date | string;
+    authenticated?: Date;
     links?: IUserLink[];
     paymentMethods?: IPaymentMethod[];
-    scheduledDeletion?: Date | string | null;
-    onboarded?: Date | string;
+    scheduledDeletion?: Date;
   }
-
   interface Icommunities extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
     role: "owner" | "admin" | "editor" | "member";
   }
-
   interface IUserLink extends ISchema {
     user_id: IUser.id;
     label: string;
     url: string;
   }
-
   interface IPaymentMethod extends ISchema {
     stripePaymentMethodId: string;
     user_id: IUser.id;
@@ -73,42 +73,41 @@ declare module "schema-interface" {
     expYear: number;
     funding: string;
   }
-
-  export interface IContact extends ISchema {
-    platform_id: IPlatform.id;
-    user_id?: IUser.id;
-    contact_for_user_id: IUser.id;
-    name?: string;
-    email: T_EMAIL;
-    phone?: string;
-    fullAddress?: string;
-    street?: string;
-    suite?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    country?: string;
-    nickname?: string;
-    latitude?: number;
-    longitude?: number;
-    neighborhood?: string;
-    specialPrices?: IContactSpecialPrice[];
-  }
-
-  interface IContactSpecialPrice extends ISchema {
-    user_id: IUser.id;
-    contact_id: IContact.id;
-    product_id?: IProduct.id;
-    service_id?: IService.id;
-    label: string;
-    description?: string;
-    originalPrice: number;
-    specialPrice: number;
-  }
-
+  // // Contacts
+  // export interface IContact extends ISchema {
+  //   platform_id: IPlatform.id;
+  //   user_id?: IUser.id;
+  //   contact_for_user_id: IUser.id;
+  //   name?: string;
+  //   email: T_EMAIL;
+  //   phone?: string;
+  //   fullAddress?: string;
+  //   street?: string;
+  //   suite?: string;
+  //   city?: string;
+  //   state?: string;
+  //   postalCode?: string;
+  //   country?: string;
+  //   nickname?: string;
+  //   latitude?: number;
+  //   longitude?: number;
+  //   neighborhood?: string;
+  //   specialPrices?: IContactSpecialPrice[];
+  // }
+  // interface IContactSpecialPrice extends ISchema {
+  //   user_id: IUser.id;
+  //   contact_id: IContact.id;
+  //   product_id?: IProduct.Id;
+  //   service_id?: IService.Id;
+  //   label: string;
+  //   description?: string;
+  //   originalPrice: number;
+  //   specialPrice: number;
+  // }
+  // Transactions
   export interface ITransaction extends ISchema {
     platform_id: IPlatform.id;
-    invoice_id: IInvoice.id;
+    contract_id: IContract.id;
     buyer_user_id?: IUser.id;
     seller_user_id?: IUser.id;
     amount: number;
@@ -117,14 +116,14 @@ declare module "schema-interface" {
     type: "outgoing" | "incoming" | "fee:candle" | "fee:platform" | "fee:stripe" | "outgoing:refund" | "incoming:refund" | "fee:candle:refund" | "fee:platform:refund" | "fee:stripe:refund";
     status: "queued" | "ready" | "processing" | "succeeded" | "failed" | "canceled" | "disputed" | "unknown";
   }
-
+  // Waitlists
   export interface IWaitlist extends ISchema {
     email: T_EMAIL;
     name?: T_FULLNAME;
     position: number;
     granted?: Date | null;
   }
-
+  // Webhooks
   export interface IWebhook extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
@@ -133,11 +132,11 @@ declare module "schema-interface" {
     url: string;
     onEvent: "create" | "update" | "delete";
   }
-
-  export interface IInvoice extends ISchema {
+  // Contracts
+  export interface IContract extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
-    items?: IInvoiceItem[];
+    items?: IContractItem[];
     notes?: string;
     sent?: Date;
     lastSent?: Date;
@@ -148,16 +147,15 @@ declare module "schema-interface" {
     total?: number;
     currency?: T_CURRENCY;
     status: "draft" | "open" | "void" | "paid" | "uncollectible" | "processing";
-    buyers?: IInvoiceBuyer[];
-    sellers?: IInvoiceSeller[];
-    fees?: IInvoiceFee[];
+    buyers?: IContractBuyer[];
+    sellers?: IContractSeller[];
+    fees?: IContractFee[];
     includeStripeFees?: boolean;
     includeCandleFees?: boolean;
     includePlatformFees?: boolean;
   }
-
-  interface IInvoiceItem extends ISchema {
-    invoice_id: IInvoice.id;
+  interface IContractItem extends ISchema {
+    contract_id: IContract.id;
     user_id: IUser.id;
     type: "product" | "service" | "subscription";
     service_id?: IService.id;
@@ -168,17 +166,15 @@ declare module "schema-interface" {
     tota: number;
     description: IService.name | IProduct.name | ISubscription.name;
   }
-
-  interface IInvoiceFee extends ISchema {
-    invoice_id: IInvoice.id;
+  interface IContractFee extends ISchema {
+    contract_id: IContract.id;
     buyer_user_id?: IUser.id;
     type: "candle:base" | "platform:base" | "stripe:cc" | "stripe:us_bank_account" | "custom";
     amount: number;
     description: string;
   }
-
-  interface IInvoiceBuyer extends ISchema {
-    invoice_id: IInvoice.id;
+  interface IContractBuyer extends ISchema {
+    contract_id: IContract.id;
     product_id?: IProduct.id;
     service_id?: IService.id;
     user_id: IUser.id;
@@ -188,9 +184,8 @@ declare module "schema-interface" {
     amountDue: number;
     amountPaid: number;
   }
-
-  interface IInvoiceSeller extends ISchema {
-    invoice_id: IInvoice.id;
+  interface IContractSeller extends ISchema {
+    contract_id: IContract.id;
     user_id: IUser.id;
     email: T_EMAIL;
     name: T_FULLNAME;
@@ -199,6 +194,7 @@ declare module "schema-interface" {
     amountReceived: number;
   }
 
+  // Products
   export interface IProduct extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
@@ -210,20 +206,14 @@ declare module "schema-interface" {
     quantity?: T_QUANTITY;
     isAvailableInStock?: boolean;
     isEnabled?: boolean;
-    useSeasonalPrices?: boolean;
-    activeSubscriptions?: number;
-    subscriptionLimit?: number;
-    buyerLimit?: number;
-    activeBuyers?: number;
     category?: string;
+    cycle: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
     subcategory?: string;
     tags?: string[];
     price: number;
-    cycle?: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
-    expires?: Date | string | null;
     seasonalPrices?: ISeasonalPrice[];
   }
-
+  // Services
   export interface IService extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
@@ -238,13 +228,12 @@ declare module "schema-interface" {
     buyerLimit?: number;
     activeSubscriptions?: number;
     activeBuyers?: number;
-    cycle: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
+    metering: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
     tags?: string[];
     price: number;
     seasonalPrices?: ISeasonalPrice[];
     expires?: Date;
   }
-
   interface ISeasonalPrice extends ISchema {
     type: "product" | "service";
     product_id?: IProduct.id;
@@ -253,13 +242,12 @@ declare module "schema-interface" {
     seasonEnd: Date;
     price: number;
   }
-
+  // Carts
   export interface ICart extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
     items?: ICartItem[];
   }
-
   interface ICartItem extends ISchema {
     cart_id: ICart.id;
     type: "product" | "service";
@@ -268,7 +256,7 @@ declare module "schema-interface" {
     service_id?: IService.id;
     product_id?: IProduct.id;
   }
-
+  // Subscriptions
   export interface ISubscription extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
@@ -282,7 +270,7 @@ declare module "schema-interface" {
     startDate: Date;
     ended?: Date;
   }
-
+  // Calendars
   export interface ICalendar extends ISchema {
     platform_id: IPlatform.id;
     user_id: IUser.id;
@@ -295,12 +283,10 @@ declare module "schema-interface" {
 
   interface ICalendarAvailability extends ISchema {
     calendar_id: ICalendar.id;
-    dayOfWeek?: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday" | null;
-    overrideDate?: Date;
+    dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
     startTime: T_TIME;
     endTime: T_TIME;
   }
-
   interface ICalendarEvent extends ISchema {
     calendar_id: ICalendar.id;
     user_id: IUser.id;
@@ -320,7 +306,6 @@ declare module "schema-interface" {
     confirmed?: Date;
     attendees?: ICalendarEventAttendee[];
   }
-
   interface ICalendarEventAttendee extends ISchema {
     calendar_event_id: ICalendarEvent.id;
     user_id: IUser.id;

@@ -1,13 +1,13 @@
 // stores/contract.store.ts
 import { create } from "zustand";
-import { IContact } from "schema-interface";
+import { IContract } from "schema-interface";
 
 interface ContractState {
-  contract: IContact | null;
-  contracts: IContact[];
-  setContract: (contract: IContact) => void;
-  setContracts: (contracts: IContact[]) => void;
-  updateContract: (updates: Partial<IContact>) => void;
+  contract: IContract | null;
+  contracts: IContract[];
+  setContract: (contract: IContract) => void;
+  setContracts: (contracts: IContract[]) => void;
+  updateContract: (updates: Partial<IContract>) => void;
   clearContract: () => void;
 }
 

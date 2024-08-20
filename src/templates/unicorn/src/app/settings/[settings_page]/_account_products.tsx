@@ -1,6 +1,6 @@
 "use client";
 import Candle from "@candle-so/node";
-import { ContextDrawer } from "@/components/context_draw";
+import { ContextDrawer } from "@/components/context_drawer";
 import { DataTable } from "@/components/data_table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ const cycles = [
   { name: "Yearly", value: "yearly" },
 ];
 
-export const Offerings = () => {
+export const SettingsProductsSettings = () => {
   const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
   const me = useUserStore((state) => state.me);
   const products = useProductStore((state) => state.products);
@@ -93,7 +93,7 @@ export const Offerings = () => {
   const editUserModal = (userRow: any) => {
     setOpenDrawer(true);
     // setMe(userRow);
-    updateURL(`/offerings`);
+    updateURL(`/settings/products`);
     setActiveTab("products");
   };
 
@@ -198,13 +198,25 @@ export const Offerings = () => {
 
   const drawerTitle = (
     <div className="flex space-x-2">
-      <span className="font-bold">Service Offerings /</span>
-      <span className="text-cndl-neutral-700 font-normal">New Offering</span>
+      <span className="font-bold">Products /</span>
+      <span className="text-cndl-neutral-700 font-normal">New product</span>
     </div>
   );
 
   return (
-    <div className="space-y-16">
+    <div className="flex-1 py-4 px-14 space-y-8 border-l border-cndl-neutral-100 max-w-5xl">
+      <div className="flex w-full justify-between items-center">
+        <div className="">
+          <h2 className="text-lg text-cndl-dark font-bold">Products</h2>
+          <p className="text-cndl-neutral-900 text-md">This is a list of services you are open to offering.</p>
+        </div>
+        <Button className="btn-primary" onClick={() => editUserModal({})}>
+          <span>
+            <TriggerButtonIcon />
+          </span>
+          <span>New Service</span>
+        </Button>
+      </div>
       <ContextDrawer open={openDrawer} title={drawerTitle} onCloseDraw={closeDrawer}>
         <div className="space-y-6 pt-8">
           <Uploader folder="offerings" field={field} onUpload={onUpload} onRemove={onRemove} />
@@ -257,20 +269,6 @@ export const Offerings = () => {
           </div>
         </div>
       </ContextDrawer>
-      <div className="flex justify-between items-start">
-        <div className="">
-          <h2 className="text-2xl font-pacifico text-cndl-dark">Service Offerings</h2>
-          <p className="text-cndl-neutral-900 text-md">This is a list of services you are open to offering.</p>
-        </div>
-        <div className="text-right">
-          <Button className="btn-primary" onClick={() => editUserModal({})}>
-            <span>
-              <TriggerButtonIcon />
-            </span>
-            <span>New Service</span>
-          </Button>
-        </div>
-      </div>
       <div className="space-y-2">
         <div className="flex">
           <Input type="search" placeholder="Search" className="border-none shadow-sm" />

@@ -6,13 +6,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { SettingsAccountSettings } from "./_account_settings";
 import { SettingsAvailabilitySettings } from "./_account_availability";
+import { SettingsProductsSettings } from "./_account_products";
 
 export const Settings = ({ settingsPage }: { settingsPage: string }) => {
   const { push } = useRouter();
 
   const setUpPage = () => {
     if (!settingsPage) return push("/settings/account");
-    if (!["account", "availability", "wallet", "logs"].includes(settingsPage)) return push("/settings/account");
+    if (!["account", "availability", "products", "wallet", "logs"].includes(settingsPage)) return push("/settings/account");
   };
 
   useEffect(() => {
@@ -30,6 +31,9 @@ export const Settings = ({ settingsPage }: { settingsPage: string }) => {
           <Link href="/settings/availability" className={cn(settingsPage === "availability" ? "font-bold text-cndl-dark" : "text-cndl-neutral-700")}>
             Availability
           </Link>
+          <Link href="/settings/products" className={cn(settingsPage === "products" ? "font-bold text-cndl-dark" : "text-cndl-neutral-700")}>
+            Products
+          </Link>
           <Link href="/settings/wallet" className={cn(settingsPage === "wallet" ? "font-bold text-cndl-dark" : "text-cndl-neutral-700")}>
             Wallet
           </Link>
@@ -40,6 +44,7 @@ export const Settings = ({ settingsPage }: { settingsPage: string }) => {
       </div>
       {settingsPage === "account" && <SettingsAccountSettings />}
       {settingsPage === "availability" && <SettingsAvailabilitySettings />}
+      {settingsPage === "products" && <SettingsProductsSettings />}
     </div>
   );
 };

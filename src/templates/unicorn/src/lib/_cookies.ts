@@ -73,6 +73,8 @@ export const getAuthTokens = () => {
 export const clearSession = () => {
   deleteCookie("accessToken");
   deleteCookie("refreshToken");
+  deleteCookie("mode");
+  deleteCookie("timezone");
   return;
 };
 

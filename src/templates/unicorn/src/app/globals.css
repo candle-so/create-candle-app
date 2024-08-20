@@ -91,7 +91,13 @@ button {
 }
 
 .btn-primary {
-  @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100 space-x-2;
+  @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100 space-x-2 flex items-center;
+}
+.btn-primary-negative {
+  @apply text-cndl-light bg-cndl-negative-500 rounded-full hover:bg-cndl-negative-700 hover:text-cndl-negative-100 space-x-2 flex items-center;
+}
+.btn-secondary {
+  @apply text-cndl-primary-900 font-bold bg-cndl-neutral-50 rounded-full hover:bg-cndl-primary-50 hover:text-cndl-primary-700 space-x-2 flex items-center border-2 border-cndl-neutral-100 hover:border-cndl-primary-100;
 }
 
 .input-primary {
