@@ -7,18 +7,6 @@ type CounterStore = {
   decrement: () => void;
 };
 
-type AuthStore = {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-};
-
-export const useAuthStore = create<AuthStore>((set) => ({
-  isLoggedIn: false,
-  login: () => set({ isLoggedIn: true }),
-  logout: () => set({ isLoggedIn: false }),
-}));
-
 export const useCounterStore = create<CounterStore>((set) => ({
   count: 0,
   increment: () => set((state) => ({ count: state.count + 1 })),

@@ -5,24 +5,33 @@ import path from "path";
 import inquirer from "inquirer";
 import { execSync } from "child_process";
 
-let projectName = process.argv[2] || "my-candle-app";
+const PROJECT_NAME = process.argv[2] || "my-candle-app";
+const API_KEY = process.argv[3] || process.env.CANDLE_API_KEY || "";
 
 const TEMPLATE_PATH = path.join(__dirname, "../../src/templates/default");
 
 async function main() {
-  const answers = await inquirer.prompt([
+  const prompts: any = [
     {
       type: "input",
       name: "projectName",
       message: "What is your project name?",
-      default: projectName,
+      default: PROJECT_NAME,
     },
-  ]);
+  ];
 
-  const targetPath = path.join(
-    process.cwd(),
-    answers.projectName || projectName
-  );
+  if (!API_KEY) {
+    prompts.push({
+      type: "input",
+      name: "apiKey",
+      message: "What is your Candle API key?",
+      default: API_KEY,
+    });
+  }
+
+  const answers = await inquirer.prompt([...prompts]);
+
+  const targetPath = path.join(process.cwd(), answers.projectName || PROJECT_NAME);
 
   console.log("---> Creating project at:", targetPath);
 

@@ -1,16 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useProductsStore = void 0;
-// store/products.store.ts
+exports.useProductStore = void 0;
+// stores/platform.store.ts
 const zustand_1 = require("zustand");
-const products_data_1 = require("./_sample_data/products.data");
-const defaultProducts = products_data_1.productsData;
-exports.useProductsStore = (0, zustand_1.create)((set) => ({
-    products: defaultProducts,
-    addProduct: (product) => set((state) => ({
-        products: [...state.products, product],
+exports.useProductStore = (0, zustand_1.create)((set) => ({
+    product: null,
+    products: [],
+    setProduct: (product) => set({ product }),
+    setProducts: (products) => set({ products }),
+    updateProduct: (updates) => set((state) => ({
+        product: state.product ? { ...state.product, ...updates } : null,
     })),
-    setProducts: (products) => set(() => ({
-        products: products,
-    })),
+    clearProduct: () => set({ product: null }),
 }));

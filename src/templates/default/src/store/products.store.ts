@@ -1,52 +1,24 @@
-// store/products.store.ts
+// stores/platform.store.ts
 import { create } from "zustand";
-import { productsData } from "./_sample_data/products.data";
+import { IProduct } from "schema-interface";
 
-type User = {
-  name: string;
-  profileImage: string;
-};
+interface ProductState {
+  product: IProduct | null;
+  products: IProduct[];
+  setProduct: (product: IProduct) => void;
+  setProducts: (products: IProduct[]) => void;
+  updateProduct: (updates: Partial<IProduct>) => void;
+  clearProduct: () => void;
+}
 
-type Review = {
-  user: User;
-  rating: number;
-  comment: string;
-};
-
-export type Product = {
-  id: number;
-  name: string;
-  price: string;
-  category: string;
-  seller: User;
-  available: number;
-  images: string[];
-  sizes: string[];
-  shippingInfo: string;
-  description: string;
-  scientificName: string;
-  origin: string;
-  careInstructions: string;
-  reviews: Review[];
-  relatedProducts: number[]; // IDs of related products
-};
-
-type ProductsStore = {
-  products: Product[];
-  addProduct: (product: Product) => void;
-  setProducts: (products: Product[]) => void;
-};
-
-const defaultProducts: any = productsData;
-
-export const useProductsStore = create<ProductsStore>((set) => ({
-  products: defaultProducts,
-  addProduct: (product: Product) =>
+export const useProductStore = create<ProductState>((set) => ({
+  product: null,
+  products: [],
+  setProduct: (product) => set({ product }),
+  setProducts: (products) => set({ products }),
+  updateProduct: (updates) =>
     set((state) => ({
-      products: [...state.products, product],
+      product: state.product ? { ...state.product, ...updates } : null,
     })),
-  setProducts: (products: Product[]) =>
-    set(() => ({
-      products: products,
-    })),
+  clearProduct: () => set({ product: null }),
 }));
