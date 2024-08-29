@@ -1,4 +1,4 @@
-import Cookie from "../../node_modules/@types/js-cookie";
+import Cookie from "js-cookie";
 function isServer() {
   return typeof window === "undefined";
 }

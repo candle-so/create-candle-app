@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTimezoneFromCookie = exports.saveTimezoneToCookie = exports.clearSession = exports.getAuthTokens = exports.createSession = exports.deleteCookie = exports.setCookie = exports.getCookie = void 0;
-const js_cookie_1 = __importDefault(require("../../node_modules/@types/js-cookie"));
+const js_cookie_1 = __importDefault(require("js-cookie"));
 function isServer() {
     return typeof window === "undefined";
 }

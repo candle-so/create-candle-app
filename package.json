@@ -1,6 +1,6 @@
 {
   "name": "create-candle-app",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Create a Next.js Marketplace with Candle setup",
   "main": "dist/bin/create-candle-app.js",
   "bin": {
