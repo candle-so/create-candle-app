@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { useCalendarStore } from "@/store/calendar.store";
 import { addDaysToDate, calculateTimeDifference, formatDate } from "@/lib/time";
 import { useCartStore } from "@/store/cart.store";
+import { Edit } from "lucide-react";
 
 export const Availability = ({ user_id, product, cta }: { user_id: string; product: IProduct; cta: string }) => {
   const pathname = usePathname().slice(1);
@@ -89,7 +90,7 @@ export const Availability = ({ user_id, product, cta }: { user_id: string; produ
     const quantity = calculateQuantityFromAvailability();
 
     let { accessToken } = getAuthTokens();
-    const { error, data } = await candle.carts.addProductToUserCart(product.id, { quantity }, accessToken as string);
+    const { error, data } = await candle.carts.addProductToUserCart(product.id, { quantity, startDate: calendarFrom, endDate: calendarTo }, accessToken as string);
     if (error) return;
     setCart(data);
   };
@@ -120,10 +121,18 @@ export const Availability = ({ user_id, product, cta }: { user_id: string; produ
       <div className="pt-4 flex items-center justify-between pb-8">
         <h2 className="font-pacifico text-2xl">My Availability</h2>
 
-        {me && (
+        {me && product.user_id !== me?.id && (
           <Button className="w-full max-w-xs btn-primary space-x-2" onClick={addProductToCart}>
             {cta}
           </Button>
+        )}
+        {me && product.user_id === me?.id && (
+          <Link href={`/settings/products`} className="max-w-xs p-2 flex items-center space-x-2">
+            <span>
+              <Edit size={16} />
+            </span>
+            <span>Edit Product</span>
+          </Link>
         )}
       </div>
       <div className="bg-cndl-light ring-2 ring-cndl-primary-50 ring-offset-4 rounded-2xl relative overflow-hidden">

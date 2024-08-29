@@ -81,7 +81,7 @@ export const Product = ({ product }: { product: IProduct }) => {
               </div>
             </div>
           </div>
-          <Availability product={product} user_id={product.user?.id as string} cta="Add to Cart"  />
+          <Availability product={product} user_id={product.user?.id as string} cta="Add to Cart" />
         </div>
       </div>
       <div className="bg-gradient-to-b from-cndl-primary-50 to-white pt-16 pb-16 space-y-4 min-h-80">

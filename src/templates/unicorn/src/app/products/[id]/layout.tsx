@@ -4,8 +4,8 @@ import { Metadata, Viewport } from "next";
 import "react-toastify/dist/ReactToastify.css";
 
 const siteName = "Unicorns Services";
-const title = "Candle - Infrastructure for building marketplaces";
-const description = "For people building marketplaces; helping them ship faster without getting in their way.";
+const title = "Unicorns - Description of Unicorns";
+const description = "Unicorns - Description of Unicorns";
 const url = "https://www.candle.so/";
 const image = "https://www.candle.so/images/hero-dashboard.png";
 // const imageAlt = "Mockup of Candle dashboard";

@@ -5,9 +5,9 @@ import Script from "next/script";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const siteName = "Candle";
-const title = "Candle - Infrastructure for building marketplaces";
-const description = "For people building marketplaces; helping them ship faster without getting in their way.";
+const siteName = "Unicorns";
+const title = "Unicorns - Description of Unicorns";
+const description = "Unicorns - Description of Unicorns";
 const url = "https://www.candle.so/";
 const image = "https://www.candle.so/images/hero-dashboard.png";
 // const imageAlt = "Mockup of Candle dashboard";

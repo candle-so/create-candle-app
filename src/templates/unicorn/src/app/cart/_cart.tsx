@@ -12,7 +12,7 @@ import { useCartStore } from "@/store/cart.store";
 import { useContractStore } from "@/store/contract.store";
 import { useUserStore } from "@/store/user.store";
 import Candle from "@candle-so/node";
-import { CircleDollarSignIcon, FileTextIcon, Trash2Icon, UserPlus2Icon, UserSearchIcon } from "lucide-react";
+import { CircleDollarSignIcon, FileTextIcon, MailCheckIcon, TelescopeIcon, Trash2Icon, UserPlus2Icon, UserSearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -25,6 +25,7 @@ export const Cart = () => {
   const setContract = useContractStore((state) => state.setContract);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [notes, setNotes] = useState("");
+  const [isSent, setIsSent] = useState(true);
 
   const closeDrawer = (e: any) => {
     setOpenDrawer(e);
@@ -56,12 +57,12 @@ export const Cart = () => {
     if (!contract) return;
     let { accessToken } = getAuthTokens();
     const { error, data } = await candle.contracts.sendContract(contract.id, accessToken as string);
-    console.log("sendContract", error, data);
     if (error) return;
     let _cart = { ...cart };
     _cart.items = [];
     setCart(_cart);
     setContract(data);
+    setIsSent(true);
   };
 
   useEffect(() => {
@@ -78,7 +79,35 @@ export const Cart = () => {
     </div>
   );
 
-  if (!cart || cart.items.length === 0)
+  if (!cart || (cart.items.length === 0 && isSent)) {
+    return (
+      <div className="max-w-2xl mx-auto space-y-8 bg-cndl-neutral-50 p-8 rounded-xl">
+        <div className="flex items-center space-x-8 w-full justify-between">
+          <div className="text-8xl p-4">🎉 </div>
+          <div className="flex-1 text-sm text-cndl-dark space-y-4">
+            <h2 className="text-4xl font-bold font-pacifico">Congratulations!</h2>
+            <div className="flex space-x-2 text-xl items-center text-cndl-neutral-800">
+              <div>
+                Proposal Sent to <span className="font-bold">{contract?.sellers?.map((s: any) => s.name).join(", ")}</span>
+              </div>
+            </div>
+            <div className="">
+              <Button className="btn-primary" onClick={() => setOpenDrawer(true)}>
+                <Link className="flex space-x-2 items-center" href="/">
+                  <span className="">
+                    <TelescopeIcon size={20} />
+                  </span>
+                  <span>Continue browsing</span>
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!cart || (cart.items.length === 0 && !isSent))
     return (
       <div className="max-w-2xl mx-auto space-y-8 bg-cndl-neutral-50 p-8 rounded-xl">
         <div className="pb-4 space-y-2">
@@ -201,12 +230,14 @@ export const Cart = () => {
         {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
         {/* <pre>{JSON.stringify(contract, null, 2)}</pre> */}
         <div className="pt-8">
-          {contract && contract.status === "draft" && <Button variant="ghost" className="btn-primary" onClick={sendContract}>
-            <span>
-              <CircleDollarSignIcon size={18} />
-            </span>
-            <span>Send Proposal</span>
-          </Button>}
+          {((contract && contract.status === "draft") || !contract) && (
+            <Button variant="ghost" className="btn-primary" onClick={sendContract}>
+              <span>
+                <CircleDollarSignIcon size={18} />
+              </span>
+              <span>Send Proposal</span>
+            </Button>
+          )}
         </div>
       </div>
     </div>

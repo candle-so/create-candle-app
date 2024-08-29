@@ -6,8 +6,9 @@ import { getAuthTokens } from "@/lib/_cookies";
 import { useUserStore } from "@/store/user.store";
 import { useEffect, useState } from "react";
 import { usePathname, redirect } from "next/navigation";
+import { routeCheck } from "@/lib/utils";
 
-const unprotectedRoutes = ["/"];
+const unprotectedRoutes = ["/", /^\/products\/prod_[a-zA-Z0-9]+$/];
 
 export const Navigation = ({ breadcrumbs }: { breadcrumbs?: any[] }) => {
   const pathname = usePathname();
@@ -32,8 +33,8 @@ export const Navigation = ({ breadcrumbs }: { breadcrumbs?: any[] }) => {
 
   useEffect(() => {
     if (!isLoaded) return;
-    if (unprotectedRoutes.includes(pathname)) return setIsLoaded(true);
-    if (!unprotectedRoutes.includes(pathname) && !me) {
+    if (routeCheck(unprotectedRoutes, pathname)) return setIsLoaded(true);
+    if (!routeCheck(unprotectedRoutes, pathname) && !me) {
       redirect(`/auth?redirect=${pathname.slice(1)}`);
     }
   }, [isLoaded]);

@@ -160,11 +160,12 @@ declare module "schema-interface" {
     type: "product" | "service" | "subscription";
     service_id?: IService.id;
     product_id?: IProduct.id;
-    subscription_id?: ISubscription.id;
+    startDate?: Date;
+    endDate?: Date;
     quantity: number;
     price: number;
     tota: number;
-    description: IService.name | IProduct.name | ISubscription.name;
+    description: IService.name | IProduct.name;
   }
   interface IContractFee extends ISchema {
     contract_id: IContract.id;
@@ -252,23 +253,11 @@ declare module "schema-interface" {
     cart_id: ICart.id;
     type: "product" | "service";
     quanity: T_QUANTITY | T_QUANTITY_HOURS;
+    startDate?: Date;
+    endDate?: Date;
     price: number;
     service_id?: IService.id;
     product_id?: IProduct.id;
-  }
-  // Subscriptions
-  export interface ISubscription extends ISchema {
-    platform_id: IPlatform.id;
-    user_id: IUser.id;
-    service_id: IService.id;
-    price: number;
-    isActive?: boolean;
-    isPaused?: boolean;
-    pausedAt?: Date;
-    pausedUntil?: Date;
-    cycle: "hourly" | "daily" | "weekly" | "biweekly" | "monthly" | "yearly";
-    startDate: Date;
-    ended?: Date;
   }
   // Calendars
   export interface ICalendar extends ISchema {
@@ -291,7 +280,6 @@ declare module "schema-interface" {
     calendar_id: ICalendar.id;
     user_id: IUser.id;
     service_id?: IService.id;
-    subscription_id?: ISubscription.id;
     googleCalendarEventId?: string;
     title: string;
     description?: string;

@@ -83,15 +83,48 @@
   }
 }
 
-div,
+::selection {
+  /* background-color: #fffa65;
+  color: #000000;  */
+  @apply bg-cndl-primary-400 bg-opacity-15 text-cndl-primary-700;
+}
+
 a,
 .cndl-transition,
 button {
   @apply transition-all duration-200 ease-in-out;
 }
 
+.status {
+  @apply inline-block px-2 rounded-full text-center font-bold border-2 text-sm whitespace-nowrap;
+}
+.status-draft {
+  @apply bg-cndl-neutral-50 text-cndl-neutral-500 border-cndl-neutral-500;
+}
+.status-open {
+  @apply bg-cndl-primary-50 text-cndl-primary-500 border-cndl-primary-500;
+}
+.status-request {
+  @apply bg-cndl-primary-50 text-cndl-primary-500 border-cndl-primary-500;
+}
+.status-void {
+  @apply bg-cndl-negative-50 text-cndl-negative-500 border-cndl-negative-500;
+}
+.status-paid {
+  @apply bg-cndl-positive-50 text-cndl-positive-500 border-cndl-positive-500;
+}
+.status-uncollectible {
+  @apply bg-cndl-neutral-50 text-cndl-neutral-500 border-cndl-neutral-500;
+}
+.status-processing {
+  @apply bg-cndl-accent-50 text-cndl-accent-500 border-cndl-accent-500;
+}
+
 .btn-primary {
   @apply text-cndl-light bg-cndl-primary-500 rounded-full hover:bg-cndl-primary-700 hover:text-cndl-primary-100 space-x-2 flex items-center;
+}
+.btn-primary-positive {
+  @apply text-cndl-light bg-cndl-positive-500 rounded-full hover:bg-cndl-positive-700 hover:text-cndl-positive-100 space-x-2 flex items-center;
 }
 .btn-primary-negative {
   @apply text-cndl-light bg-cndl-negative-500 rounded-full hover:bg-cndl-negative-700 hover:text-cndl-negative-100 space-x-2 flex items-center;

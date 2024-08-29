@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useUserStore } from "@/store/user.store";
+import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 
 export const TriggerButtonIcon = () => {
   return <PlusCircleIcon size={20} />;
@@ -67,6 +69,8 @@ export const SettingsProductsSettings = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState("");
+  const [isEnabled, setIsEnabled] = useState(true);
+
   const [categories, setCategories] = useState<any>(_skills);
   const [tableData, setTableData] = useState([]);
   const [activeTab, setActiveTab] = useState<string>();
@@ -161,8 +165,9 @@ export const SettingsProductsSettings = () => {
       name,
       description,
       category,
-      price,
+      price: Number(price) * 100,
       cycle: cycleValue,
+      isEnabled,
     };
     let { error, data: newProduct } = await candle.products.createProduct(_product);
     if (error) {
@@ -170,6 +175,7 @@ export const SettingsProductsSettings = () => {
     }
     setProduct(newProduct);
     setProducts([...products, newProduct]);
+    setOpenDrawer(false);
   };
 
   const onUpload = (data: any) => {
@@ -260,6 +266,15 @@ export const SettingsProductsSettings = () => {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="">
+              <Label className="text-cndl-neutral-900 font-bold">Enable / Disable Product</Label>
+            </div>
+            <div className="flex space-x-2 items-center font-bold">
+              <Switch checked={isEnabled} onCheckedChange={(e) => setIsEnabled(e)} />
+              <span className={cn(isEnabled ? "text-dark" : "text-red-300 ")}>{isEnabled ? "Enabled" : "Disabled"}</span>
             </div>
           </div>
           <div className="pt-8">

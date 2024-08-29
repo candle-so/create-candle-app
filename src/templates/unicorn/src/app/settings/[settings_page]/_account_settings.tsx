@@ -2,12 +2,11 @@ import Candle from "@candle-so/node";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { DoorOpenIcon, InfoIcon, SaveIcon } from "lucide-react";
+import { InfoIcon, SaveIcon } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { clearSession, getAuthTokens } from "@/lib/_cookies";
-import { redirect } from "next/navigation";
 
 export const SettingsAccountSettings = () => {
   const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
@@ -30,16 +29,12 @@ export const SettingsAccountSettings = () => {
     setChangesMade(true);
   };
 
-  const doSignOut = async () => {
-    clearSession();
-    window.location.href = "/";
-  };
   if (!me) return null;
 
   return (
     <div className="flex-1 py-4 px-14 space-y-8 border-l border-cndl-neutral-100 max-w-4xl">
       <div className="flex w-full justify-between items-center">
-        <h2 className="text-lg text-cndl-dark font-bold">Account Settings</h2>
+        <h2 className="text-lg text-cndl-dark font-bold">Account</h2>
         <Button className="btn-primary" variant="ghost" disabled={!changesMade} onClick={saveChanges}>
           <SaveIcon size={16} /> <span>Save Changes</span>
         </Button>
@@ -91,17 +86,6 @@ export const SettingsAccountSettings = () => {
           </Label>
           <Input id="email" className="text-cndl-neutral-700 shadow-md shadow-cndl-neutral-50 border-cndl-neutral-50" type="email" placeholder="" value={me.email} onChange={handleChange} />
         </div> */}
-      </div>
-      <div className="border-2 border-cndl-negative-200 rounded-lg py-6 px-8">
-        <div className="text-cndl-negative-700">
-          <h3 className="font-bold">Sign out</h3>
-          <p className="text-sm text-cndl-neutral-900">Sign out of your account</p>
-        </div>
-        <div className="pt-8">
-          <Button className="btn-primary-negative" variant="ghost" onClick={doSignOut}>
-            <DoorOpenIcon size={16} /> <span>Sign out</span>
-          </Button>
-        </div>
       </div>
     </div>
   );

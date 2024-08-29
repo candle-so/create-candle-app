@@ -26,7 +26,7 @@ export const Settings = ({ settingsPage }: { settingsPage: string }) => {
         <h2 className="text-3xl font-pacifico">Settings</h2>
         <div className="gap-3 grid grid-rows-4">
           <Link href="/settings/account" className={cn(settingsPage === "account" ? "font-bold text-cndl-dark" : "text-cndl-neutral-700")}>
-            Account Settings
+            Account
           </Link>
           <Link href="/settings/availability" className={cn(settingsPage === "availability" ? "font-bold text-cndl-dark" : "text-cndl-neutral-700")}>
             Availability

@@ -6,10 +6,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
+  onRowClick?: (row: TData) => void;
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, onRowClick }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
@@ -34,7 +35,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       <TableBody>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+            <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="cndl-transition cursor-pointer hover:bg-cndl-primary-50 rounded-full" onClick={() => (onRowClick ? onRowClick(row.original) : null)}>
               {row.getVisibleCells().map((cell) => (
                 <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
