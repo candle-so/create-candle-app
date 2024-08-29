@@ -1,4 +1,5 @@
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
@@ -10,7 +11,7 @@ import { SpecificDatesEditor } from "./_specific_dates_editor";
 import { SpecificDatesViewer } from "./_specific_dates_viewer";
 
 export const SettingsAvailabilitySettings = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const me: any = useUserStore((state) => state.me);
   const setCalendar: any = useCalendarStore((state) => state.setCalendar);
   const setAvailabilities: any = useCalendarStore((state) => state.setAvailabilities);

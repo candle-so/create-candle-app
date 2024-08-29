@@ -5,6 +5,7 @@ import { ProductTile } from "./_product_tile";
 import { Button } from "../ui/button";
 import { useProductStore } from "@/store/products.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 // import { productsData } from "@/app/_data/index.data";
 
 const sortBy = [
@@ -15,7 +16,7 @@ const sortBy = [
 ];
 
 export const ProductList = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const products = useProductStore((state) => state.products);
   const setProducts = useProductStore((state) => state.setProducts);
   const [sortByValue, setSortByValue] = useState(sortBy[0].value);

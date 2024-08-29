@@ -2,10 +2,11 @@
 import { useEffect } from "react";
 import { useProductStore } from "@/store/products.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { ProductTile } from "../product_list/_product_tile";
 
 export const SimilarProducts = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const products = useProductStore((state) => state.products);
   const setProducts = useProductStore((state) => state.setProducts);
 

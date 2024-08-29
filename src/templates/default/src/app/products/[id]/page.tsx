@@ -2,9 +2,10 @@ import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Product } from "@/components/product";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
 
   const { error, data: product } = await candle.products.retrieveProductById(params.id);
 

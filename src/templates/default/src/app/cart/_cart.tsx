@@ -12,12 +12,13 @@ import { useCartStore } from "@/store/cart.store";
 import { useContractStore } from "@/store/contract.store";
 import { useUserStore } from "@/store/user.store";
 import Candle from "@candle-so/node";
-import { CircleDollarSignIcon, FileTextIcon, MailCheckIcon, TelescopeIcon, Trash2Icon, UserPlus2Icon, UserSearchIcon } from "lucide-react";
+import candleConfig from "@/lib/candle.config";
+import { CircleDollarSignIcon, FileTextIcon, TelescopeIcon, Trash2Icon, UserPlus2Icon, UserSearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const Cart = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const me: any = useUserStore((state) => state.me);
   const cart: any = useCartStore((state) => state.cart);
   const setCart: any = useCartStore((state) => state.setCart);

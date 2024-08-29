@@ -4,6 +4,7 @@ import { Calendar } from "../ui/calendar";
 import { Button } from "../ui/button";
 import { getAuthTokens } from "@/lib/_cookies";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { ICalendarAvailability, IProduct } from "schema-interface";
 import { useUserStore } from "@/store/user.store";
 import Link from "next/link";
@@ -15,7 +16,7 @@ import { Edit } from "lucide-react";
 
 export const Availability = ({ user_id, product, cta }: { user_id: string; product: IProduct; cta: string }) => {
   const pathname = usePathname().slice(1);
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const me: any = useUserStore((state) => state.me);
   const setCart: any = useCartStore((state) => state.setCart);
   const [calendarFrom, setCalendarFrom] = useState<Date | undefined>();

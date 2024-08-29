@@ -7,13 +7,14 @@ import { salesColumns } from "./_columns";
 import { OrdersDrawer } from "./_drawer";
 import { useUserStore } from "@/store/user.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { getAuthTokens } from "@/lib/_cookies";
 
 export const Orders = () => {
   const me = useUserStore((state) => state.me);
   const [tableData, setTableData] = useState([]);
 
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const editContractModal = (userRow: any) => {
     // setOpenDrawer(true);
     // // setMe(userRow);

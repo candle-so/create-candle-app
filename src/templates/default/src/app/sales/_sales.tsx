@@ -7,6 +7,7 @@ import { salesColumns } from "./_columns";
 import { SalesDrawer } from "./_drawer";
 import { useUserStore } from "@/store/user.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { getAuthTokens } from "@/lib/_cookies";
 import { useContractStore } from "@/store/contract.store";
 
@@ -18,7 +19,7 @@ export const Sales = () => {
   const [tableData, setTableData] = useState([]);
   const [openDrawer, setOpenDrawer] = useState(false);
 
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const editContractModal = (userRow: any) => {
     setOpenDrawer(true);
     // setMe(userRow);
@@ -41,7 +42,6 @@ export const Sales = () => {
     const _contract = contracts.find((c) => c.id === row.id);
     if (!_contract) return;
     setContract(_contract);
-    console.log(row);
     editContractModal(row);
   };
 

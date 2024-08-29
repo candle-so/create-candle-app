@@ -1,4 +1,5 @@
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
@@ -10,7 +11,7 @@ export const AuthOTPVerify = () => {
   const setMe: any = useUserStore((state) => state.setMe);
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const { push } = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);

@@ -3,10 +3,11 @@ import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js"
 import { Button } from "../ui/button";
 import { usePaymentStore } from "@/store/payment.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { getAuthTokens } from "@/lib/_cookies";
 
 export default function NewPaymentMethodForm() {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const formRef = useRef<HTMLFormElement>(null);
   const [buttonText, setButtonText] = useState("Save New Card");
   const [isLoading, setIsLoading] = useState(false);

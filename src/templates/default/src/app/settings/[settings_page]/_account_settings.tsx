@@ -1,4 +1,5 @@
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -6,10 +7,10 @@ import { InfoIcon, SaveIcon } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { clearSession, getAuthTokens } from "@/lib/_cookies";
+import { getAuthTokens } from "@/lib/_cookies";
 
 export const SettingsAccountSettings = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const [changesMade, setChangesMade] = useState(false);
   const me: any = useUserStore((state) => state.me);
   const setMe: any = useUserStore((state) => state.setMe);

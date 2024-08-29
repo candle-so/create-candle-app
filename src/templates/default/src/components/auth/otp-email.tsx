@@ -1,4 +1,5 @@
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth.store";
@@ -41,7 +42,7 @@ const GoogleIcon = () => {
   );
 };
 export const AuthOTPEmail = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const setAuthMode = useAuthStore((state) => state.setAuthMode);
   const setAuthEmail = useAuthStore((state) => state.setAuthEmail);
   const [isLoading, setIsLoading] = useState(false);

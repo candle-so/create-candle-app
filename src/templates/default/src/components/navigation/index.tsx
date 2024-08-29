@@ -1,5 +1,6 @@
 "use client";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { AuthenticatedNavigation } from "./_authenticated";
 import { LoggedOutNavigation } from "./_logged_out";
 import { getAuthTokens } from "@/lib/_cookies";
@@ -12,7 +13,7 @@ const unprotectedRoutes = ["/", /^\/products\/prod_[a-zA-Z0-9]+$/];
 
 export const Navigation = ({ breadcrumbs }: { breadcrumbs?: any[] }) => {
   const pathname = usePathname();
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const me = useUserStore((state) => state.me);

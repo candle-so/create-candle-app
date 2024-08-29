@@ -4,11 +4,12 @@ import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AvailabilityTimeRange } from "./_availability_time_range";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { getAuthTokens } from "@/lib/_cookies";
 import { ICalendarAvailability } from "schema-interface";
 
 export const DayOfWeek = ({ day, overrideDate }: { day?: string | null; overrideDate?: Date }) => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
 
   const availabilities: any = useCalendarStore((state) => state.availabilities);
   const setAvailabilities = useCalendarStore((state) => state.setAvailabilities);

@@ -3,6 +3,7 @@ import Candle from "@candle-so/node";
 import { getAuthTokens } from "../../lib/_cookies";
 import FilePreview from "./_file_preview";
 import { cn } from "@/lib/utils";
+import candleConfig from "@/lib/candle.config";
 
 interface DragAndDropProps {
   folder: string;
@@ -12,7 +13,7 @@ interface DragAndDropProps {
 }
 
 const Uploader: React.FC<DragAndDropProps> = ({ field, onUpload, onRemove }) => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   let { accessToken } = getAuthTokens();
   // const { toasts, setToasts } = useContext(ToastContext);
   const [previewMedia, setPreviewMedia] = useState<any>(field.defaultValue || []);

@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { formatDate } from "@/lib/time";
 import { SimilarProducts } from "./_similar_products";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 
 const reviews = {
   stats: {
@@ -28,7 +29,7 @@ const reviews = {
 };
 
 export const Product = ({ product }: { product: IProduct }) => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const setRatingStars = (rating: number) => {
     const stars = [];
     const wholeStars = Math.floor(reviews.stats.rating);

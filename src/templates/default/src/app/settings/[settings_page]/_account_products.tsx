@@ -1,5 +1,6 @@
 "use client";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { ContextDrawer } from "@/components/context_drawer";
 import { DataTable } from "@/components/data_table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -58,7 +59,7 @@ const cycles = [
 ];
 
 export const SettingsProductsSettings = () => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const me = useUserStore((state) => state.me);
   const products = useProductStore((state) => state.products);
   const setProduct = useProductStore((state) => state.setProduct);

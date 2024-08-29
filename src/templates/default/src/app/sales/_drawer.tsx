@@ -1,6 +1,5 @@
 import { ContextDrawer } from "@/components/context_drawer";
 import { NameBadge } from "@/components/name_badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,13 +8,13 @@ import { calculateTimeDifference, formatDate } from "@/lib/time";
 import { useCalendarStore } from "@/store/calendar.store";
 import { useContractStore } from "@/store/contract.store";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IContractBuyer, IContractItem, IContractSeller, IUser } from "schema-interface";
+import { IContractBuyer, IContractItem, IContractSeller } from "schema-interface";
 
 export const SalesDrawer = ({ me, openDrawer, onDrawClose }: { me: any; openDrawer: boolean; onDrawClose: (e: any) => void }) => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const contract = useContractStore((state) => state.contract);
   const availabilities = useCalendarStore((state) => state.availabilities);
   const setAvailabilities = useCalendarStore((state) => state.setAvailabilities);

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Candle from "@candle-so/node";
+import candleConfig from "@/lib/candle.config";
 import { Logo } from "../logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useUserStore } from "@/store/user.store";
@@ -8,7 +9,7 @@ import { useCartStore } from "@/store/cart.store";
 import { ChevronDownIcon, DoorOpenIcon, HeartIcon, ShoppingCartIcon } from "lucide-react";
 import { clearSession, getAuthTokens } from "@/lib/_cookies";
 import { useEffect } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 
 const generalLinks = [
@@ -29,7 +30,7 @@ const SettingsLinks = [
 ];
 
 export const AuthenticatedNavigation = ({ breadcrumbs }: { breadcrumbs: any }) => {
-  const candle = Candle.init({ api_key: process.env.NEXT_PUBLIC_CANDLE_API_KEY || "", debug: true });
+  const candle = Candle.init(candleConfig);
   const me = useUserStore((state) => state.me);
   const cart: any = useCartStore((state) => state.cart);
   const setCart: any = useCartStore((state) => state.setCart);
